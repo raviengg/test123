@@ -1,18 +1,18 @@
 /*
  * GET userlist page.
- */
-
+  
 exports.userlist = function(db) {
   return function(req, res) {
+  console.log(">>>>>>>  1");
     db.collection('userlist').find().toArray(function (err, items) {
       res.json(items);
     })
   }
 };
 
-/*
+ 
  * POST to adduser.
- */
+ 
 
 exports.adduser = function(db) {
   return function(req, res) {
@@ -24,9 +24,9 @@ exports.adduser = function(db) {
   }
 };
 
-/*
+
  * DELETE to deleteuser.
- */
+ 
 
 exports.deleteuser = function(db) {
   return function(req, res) {
@@ -36,3 +36,5 @@ exports.deleteuser = function(db) {
     });
   }
 };
+
+*/

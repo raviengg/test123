@@ -2,14 +2,14 @@ extends layout
 
 block content
     h1= title
-    p Welcome to our test
+    p Offers
 
     // Wrapper
     #wrapper
 
         // USER INFO
         #userInfo
-            h2 User Info
+            h2 Offer Info
             p
                 strong Name:
                 |  <span id='userInfoName'></span>
@@ -39,14 +39,13 @@ block content
         h2 Add User
         #addUser
             fieldset
-                input#inputUserName(type='text', placeholder='Username')
+                input#inputUserName(type='text', placeholder='Title')
                 input#inputUserEmail(type='text', placeholder='Email')
                 br
                 input#inputUserFullname(type='text', placeholder='Full Name')
                 input#inputUserAge(type='text', placeholder='Age')
                 br
-                input#inputUserLocation(type='text', placeholder='Location')
-                input#inputUserGender(type='text', placeholder='gender')
+                
                 br
                 button#btnAddUser Add User
         // /ADD USER

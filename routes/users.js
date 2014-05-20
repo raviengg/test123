@@ -8,6 +8,7 @@ router.get('/userlist', function(req, res) {
     var db = req.db;
     db.collection('userlist').find().toArray(function (err, items) {
         res.json(items);
+        console.log(">>>>>>>  2");
     });
 });
 
@@ -17,6 +18,7 @@ router.get('/userlist', function(req, res) {
 router.post('/adduser', function(req, res) {
     var db = req.db;
     db.collection('userlist').insert(req.body, function(err, result){
+        console.log(err);
         res.send(
             (err === null) ? { msg: '' } : { msg: err }
         );

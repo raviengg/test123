@@ -13,12 +13,14 @@ process.argv.forEach(function (val, index, array) {
   if(index == 2 && val == "local"){
   db = mongo.db("mongodb://localhost:27017/partyy", {native_parser:true});
   }else{
-  db = mongo.db("mongodb://gir.sharma@gmail.com:india123@oceanic.mongohq.com:10080/app25072718",{native_parser:true});
+  db = mongo.db("mongodb://gir.sharma@gmail.com:india123@oceanic.mongohq.com:10069/app25099507",{native_parser:true});
   }
 });
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./routes/index'),
+	users = require('./routes/users'),
+	offers = require('./routes/offers'),
+	venues = require('./routes/venues');
 
 var app = express();
 
@@ -41,6 +43,9 @@ app.use(function(req,res,next){
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/venues', venues);
+app.use('/offers', offers);
+
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,63 @@
+extends layout
+block content
+
+    // Wrapper
+    #wrapper
+
+        // USER INFO
+        #venueInfo
+            h2 Venue Info
+            p
+                strong Name:
+                |  <span id='venueInfoName'></span>
+                br
+                strong Address:
+                |  <span id='venueInfoAddress'></span>
+                br
+                strong Phone:
+                |  <span id='venueInfoPhone'></span>
+                br
+                strong Location:
+                |  <span id='venueInfoLocation'></span>
+                br
+                strong Timings
+                |  <span id='venueInfoTimings'></span>
+        #venueList
+            table
+                thead
+                    th Venue Name
+                    th Location
+                    th Delete?
+                tbody  
+
+        // ADD USER
+        h2 Add Venue
+        #addUser
+            fieldset
+                input#venueName(type='text', placeholder='Venue Name')
+                input#venueImage(type='text', placeholder='Image Url')
+                br
+                input#venueAddress(type='text', placeholder='Address')
+                input#venuePhone(type='tel', placeholder='Phone')
+                br
+                .textClass Short Description   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Detail Description
+                textarea#venueShortDesc
+                textarea#venueLongDesc
+                br
+                input#venueTimings(type='text', placeholder='Timings')
+                select#venueSelCity
+                    option(value="0") Select City
+                    option(value="Gurgaon") Gurgaon
+                    option(value="Noida") Noida
+                    option(value="Delhi") Delhi
+                select#venueSelType
+                    option(value="0") Select Type
+                    option(value="Pub") Pub
+                    option(value="Night Club") Night Club
+                    option(value="Resto Bar") Resto Bar
+                br
+                
+                button#btnAddVenue Add Venue
+        // /ADD USER
+
+    // /WRAPPER
