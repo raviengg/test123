@@ -11,6 +11,13 @@ router.get('/venuelist', function(req, res) {
     });
 });
 
+router.get('/totaldata', function(req, res) {
+    var db = req.db;
+    db.collection('venue').find().toArray(function (err, items) {
+        res.json({"venue":items});
+    });
+});
+
 /*
  * POST to addvenue.
  */
