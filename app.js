@@ -13,7 +13,7 @@ process.argv.forEach(function (val, index, array) {
   if(index == 2 && val == "local"){
   db = mongo.db("mongodb://localhost:27017/partyy", {native_parser:true});
   }else{
-  db = mongo.db("mongodb://gir.sharma@gmail.com:india123@oceanic.mongohq.com:10069/app25099507",{native_parser:true});
+  db = mongo.db("mongodb://gir.sharma@gmail.com:india123@oceanic.mongohq.com:10019/app25479731",{native_parser:true});
   }
 });
 
