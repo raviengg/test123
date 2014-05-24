@@ -25,15 +25,15 @@ $(document).ready(function() {
 
 });
 function populateModels(){
-    $.getJSON( '/users/userlist', function( data ) {
+    /*$.getJSON( '/users/userlist', function( data ) {
         userListData = data;
-    });
+    });*/
 	$.getJSON( '/venues/venuelist', function( data ) {
         venueListData = data;
-    });    
+    });  /*  
     $.getJSON( '/offers/offerlist', function( data ) {
         offerListData = data;
-    });
+    });*/
 }
 
 // populates the page based on the url 
