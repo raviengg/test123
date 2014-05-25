@@ -27,12 +27,13 @@ router.post('/addvenue', function(req, res) {
         console.log(err);
         if(err === null){
             db.collection('venue').find().toArray(function (err, items) {
+
               res.json(items);
-             });    	
+             });
         }else{
         	res.send({ msg: err });
         }
-        
+
     });
 });
 

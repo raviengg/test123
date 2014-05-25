@@ -14,10 +14,16 @@ router.get('/admin-venue', function(req, res) {
   res.render('admin-venue', { title: 'Venues List' });
 });
 
-/*
+
 // get offer admin page
-router.get('/offers', function(req, res) {
-  res.render('offer', { title: 'offers' });
+router.get('/admin-offer', function(req, res) {
+    var db = req.db;
+    db.collection('venue').find().toArray(function (err, venue) {
+    console.log(venue)
+          res.render('admin-offer', { title: 'Offers' ,'venue':venue});
+    });
+
+
 });
-*/
+
 module.exports = router;

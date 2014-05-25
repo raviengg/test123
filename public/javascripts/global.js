@@ -5,8 +5,8 @@ var userListData = [],venueListData=[],eventListData = [],offerListData = [];
 $(document).ready(function() {
 
     // Populate the user table on initial page load
-  
-     populateModels(); 
+
+     populateModels();
       setTimeout(getPage,2000)
     // Username link click
     $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
@@ -15,13 +15,14 @@ $(document).ready(function() {
     $('#btnAddUser').on('click', addUser);
 
     // Delete User link click
-    $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
-    
+    $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteEntity);
+
     // Delete Venue link click
-    $('#venueList table tbody').on('click', 'td a.linkdeletevenue', deleteVenue);
-    
-    //venue 
-    $('#btnAddVenue').on('click', addVenue);    
+    $('#venueList table tbody').on('click', 'td a.linkdeletevenue', deleteEntity);
+
+    //venue
+    $('#btnAddVenue').on('click', addVenue);
+    $('#btnAddOffer').on('click', addOffer);
 
 });
 function populateModels(){
@@ -30,13 +31,13 @@ function populateModels(){
     });*/
 	$.getJSON( '/venues/venuelist', function( data ) {
         venueListData = data;
-    });  /*  
+    });
     $.getJSON( '/offers/offerlist', function( data ) {
         offerListData = data;
-    });*/
+    });
 }
 
-// populates the page based on the url 
+// populates the page based on the url
 function getPage(){
 console.log(window.location.pathname);
    var cUrl = window.location.pathname
@@ -55,27 +56,7 @@ console.log(window.location.pathname);
 
 // Fill table with data
 function populateUserTable() {
-     
-    // Empty content string
-    var tableContent = '';
 
-        // For each item in our JSON, add a table row and cells to the content string
-        $.each(userListData, function(){
-            tableContent += '<tr>';
-            tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Show Details">' + this.username + '</td>';
-            tableContent += '<td>' + this.email + '</td>';
-            tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
-            tableContent += '</tr>';
-        });
-
-        // Inject the whole content string into our existing HTML table
-        $('#userList table tbody').html(tableContent);
-    //});
-};
-
-// Fill table with data
-function populateOfferTable() {
-     
     // Empty content string
     var tableContent = '';
 
@@ -211,7 +192,7 @@ function deleteUser(event) {
 
 };
 
-// Add User
+// Add Venue
 function addVenue(event) {
     event.preventDefault();
        // If it is, compile all user info into one object
@@ -226,9 +207,9 @@ function addVenue(event) {
             'city':$('#venueSelCity').val(),
             'type':$('#venueSelType').val()
         }
-    
+
         console.log(nVenue);
-        if(nVenue.name ==='' || nVenue.address ==='' || nVenue.phone ==='' 
+        if(nVenue.name ==='' || nVenue.address ==='' || nVenue.phone ===''
         || nVenue.sDescription ===''
          || nVenue.timings ==='' || nVenue.city ==='0' || nVenue.type ==='0' ){
              alert('Please fill in all details');
@@ -249,7 +230,7 @@ function addVenue(event) {
             if (typeof response ) {
                 // Clear the form inputs
                 $("[id^=venue]").val('');
-                
+
 
                 // Update the table
                 populateVenueTable();
@@ -261,37 +242,35 @@ function addVenue(event) {
                 alert('Error: ' + response.msg);
 
             }
-        });        
-    } 
-    
+        });
+    }
+
 // Fill table with data
 function populateVenueTable() {
-     
+
     // Empty content string
     var tableContent = '';
 
         // For each item in our JSON, add a table row and cells to the content string
         $.each(venueListData, function(){
             tableContent += '<tr>';
-            tableContent += '<td><a href="#" class="linkshowvenue" rel="' + this.name + '" title="Show Details">' 
+            tableContent += '<td><a href="#" class="linkshowvenue" rel="' + this.name + '" title="Show Details">'
             + this.name + '</td>';
             tableContent += '<td>' + this.city + '</td>';
-            tableContent += '<td><a href="#" class="linkdeletevenue" rel="' + this._id + '">delete</a></td>';
+            tableContent += '<td><a href="#" class="linkdeletevenue" data-url="/venues/deletevenue/" rel="' + this._id + '">delete</a></td>';
             tableContent += '</tr>';
         });
 
         // Inject the whole content string into our existing HTML table
         $('#venueList table tbody').html(tableContent);
-    //});
 };
 
-// Delete User
-function deleteVenue(event) {
+// Common delete function
+function deleteEntity(event) {
 
     event.preventDefault();
-
     // Pop up a confirmation dialog
-    var confirmation = confirm('Are you sure you want to delete this venue?');
+    var confirmation = confirm('Are you sure you want to delete this?');
 
     // Check and make sure the venue confirmed
     if (confirmation === true) {
@@ -299,7 +278,7 @@ function deleteVenue(event) {
         // If they did, do our delete
         $.ajax({
             type: 'DELETE',
-            url: '/venues/deletevenue/' + $(this).attr('rel')
+            url: $(this).data('url') + $(this).attr('rel')
         }).done(function( response ) {
 
             // Check for a successful (blank) response
@@ -310,16 +289,84 @@ function deleteVenue(event) {
             }
 
             // Update the table
-            populateVenueTable();
-
+            var entityType = $(this).data('type');
+            if(entityType ==="userList"){
+               populateUserListTable();
+            }else if(entityType ==="offer"){
+               populateOfferTable();
+            }else if(entityType ==="venue"){
+                populateVenueTable();
+            }
         });
-
     }
     else {
-
         // If they said no to the confirm, do nothing
         return false;
-
     }
 
 };
+// Add Offer
+function addOffer(event) {
+    event.preventDefault();
+        //        button#btnAddOffer
+
+        var nOffer = {
+            'header': $('#offerHeaderString').val(),
+            'photoString': $('#offerPhotoString').val(),
+            'type': $('#offerType').val(),
+            'isFeatured': $('#offerIsFeatured').val(),
+            'startDate': $('#offerStartDate').val(),
+            'endDate': $('#offerEndDate').val(),
+            'venue': $('#offerVenueV').val()
+ //           '': $('#offer').val(),'': $('#offer').val(),'': $('#offer').val(),'': $('#offer').val(),'': $('#offer').val(),
+        }
+        console.log(nOffer);
+
+        if(nOffer.header ==='' || nOffer.photoString ==='' || nOffer.type ==='0'
+        || nOffer.isFeatured ===''
+         || nOffer.startDate ==='' || nOffer.endDate ==='' || nOffer.timings ==='0'|| nOffer.venue ==='0'|| nOffer.venue ==='' ){
+             alert('Please fill in all details');
+             return;
+        }
+
+        // Use AJAX to post the object to our adduser service
+        $.ajax({
+            type: 'POST',
+            data: nOffer,
+            url: '/offers/addoffer',
+            dataType: 'JSON'
+        }).done(function( response ) {
+            alert('success');
+            // Check for successful (blank) response
+            if (typeof response ) {
+                // Clear the form inputs
+                $("[id^=offer]").val('');
+                // Update the table
+                populateOfferTable();
+            }
+            else {
+                // If something goes wrong, alert the error message that our service returned
+                alert('Error: ' + response.msg);
+            }
+        });
+    }
+
+// Fill table with data
+function populateOfferTable() {
+     $( ".date" ).datepicker();
+
+    // Empty content string
+    var tableContent = '';
+
+        // For each item in our JSON, add a table row and cells to the content string
+        $.each(offerListData, function(){
+            tableContent += '<tr>';
+            tableContent += '<td><a href="#" class="linkshowvenue" rel="' + this.header + '" title="Show Details">' + this.header+ '</td>';
+            tableContent += '<td>' + this.venue + '</td>';
+            tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
+            tableContent += '</tr>';
+        });
+
+        // Inject the whole content string into our existing HTML table
+        $('#userList table tbody').html(tableContent);
+}

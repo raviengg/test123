@@ -15,7 +15,6 @@ router.get('/', function(req, res) {
  */
 router.get('/offerlist', function(req, res) {
     var db = req.db;
-    console.log('>>>>>>>>>>>@22')
     db.collection('offers').find().toArray(function (err, items) {
         res.json(items);
     });
