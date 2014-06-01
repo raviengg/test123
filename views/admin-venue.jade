@@ -14,7 +14,7 @@ html
             h2 Venue Info
             p
                 strong Name:
-                |  <span id='venueInfoName'></span>
+                input#venueInfoName(type='text')
                 br
                 strong Address:
                 |  <span id='venueInfoAddress'></span>
@@ -27,6 +27,8 @@ html
                 br
                 strong Timings
                 |  <span id='venueInfoTimings'></span>
+                br
+                button#edit Edit
         #venueList
             table
                 thead

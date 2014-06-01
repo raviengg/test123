@@ -107,11 +107,11 @@ define(["../../javascripts/app/common"],
         var thisObject = event.data.self.venueListData[arrayPosition];
 
         //Populate Info Box
-        $('#venueInfoName').text(thisObject.name);
-        $('#venueInfoAddress').text(thisObject.address);
-        $('#venueInfoPhone').text(thisObject.phone);
-        $('#venueInfoLocation').text(thisObject.city);
-        $('#venueInfoTimings').text(thisObject.timings);
+        $('#venueInfoName').val(thisObject.name);
+        $('#venueInfoAddress').val(thisObject.address);
+        $('#venueInfoPhone').val(thisObject.phone);
+        $('#venueInfoLocation').val(thisObject.city);
+        $('#venueInfoTimings').val(thisObject.timings);
 
     }
 
