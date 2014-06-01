@@ -17,16 +17,19 @@ html
                 input#venueInfoName(type='text')
                 br
                 strong Address:
-                |  <span id='venueInfoAddress'></span>
+                input#venueInfoAddress(type='text')
                 br
                 strong Phone:
-                |  <span id='venueInfoPhone'></span>
-                br
-                strong Location:
-                |  <span id='venueInfoLocation'></span>
+                input#venueInfoPhone(type='text')
                 br
                 strong Timings
-                |  <span id='venueInfoTimings'></span>
+                input#venueInfoTimings(type='text')
+                strong Location:
+                select#venueInfoLocation
+                    option(value="0") Select City
+                    option(value="Gurgaon") Gurgaon
+                    option(value="Noida") Noida
+                    option(value="Delhi") Delhi
                 br
                 button#edit Edit
         #venueList

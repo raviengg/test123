@@ -13,8 +13,10 @@ router.get('/venuelist', function(req, res) {
 
 router.get('/totaldata', function(req, res) {
     var db = req.db;
-    db.collection('venue').find().toArray(function (err, items) {
-        res.json({"venue":items});
+    db.collection('venue').find().toArray(function (err, venueList) {
+       db.collection('offers').find().toArray(function (err, offerList) {
+            res.json({'venue':venueList,'offer':offerList});
+        });
     });
 });
 
