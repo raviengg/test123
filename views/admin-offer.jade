@@ -1,5 +1,11 @@
-extends layout
-block content
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/jquery-ui-1.10.4.custom.min.css')
+        script(data-main='/javascripts/app' src='/javascripts/lib/require.js')
+    body
     a(href='/') Back
     // Wrapper
     #wrapper
@@ -8,11 +14,13 @@ block content
             h2 Offer Info
             p
 
-                strong header:
+                strong Header:
                 |  <span id='offerHeaderS'></span>
                 br
                 strong Timings
                 |  <span id='offerVenue'></span>
+                br
+                button#edit Edit
         #offerList
             table
                 thead
@@ -45,6 +53,8 @@ block content
                 br
                 input#offerStartDate.date(type='text',placeholder='Start Date')
                 input#offerEndDate.date(type='text',placeholder='End Date')
+                br
+                input#offerTimeInfo(type='text',placeholder='Timing Information')
                 br
                 button#btnAddOffer Add Offer
         // /ADD Offer

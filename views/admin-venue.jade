@@ -1,6 +1,12 @@
-extends layout
-block content
-    a(href='/') Back	
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/jquery-ui-1.10.4.custom.min.css')
+        script(data-main='/javascripts/app' src='/javascripts/lib/require.js')
+    body
+    a(href='/') Back
     // Wrapper
     #wrapper
         // Venue INFO
@@ -27,7 +33,7 @@ block content
                     th Venue Name
                     th Location
                     th Delete?
-                tbody  
+                tbody
 
         // ADD USER
         h2 Add Venue
@@ -55,7 +61,7 @@ block content
                     option(value="Night Club") Night Club
                     option(value="Resto Bar") Resto Bar
                 br
-                
+
                 button#btnAddVenue Add Venue
         // /ADD USER
 
