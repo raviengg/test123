@@ -13,7 +13,13 @@ router.get('/venuelist', function(req, res) {
 
 router.get('/totaldata', function(req, res) {
     var db = req.db;
-    db.collection('venue').find().toArray(function (err, venueList) {
+    var location = req.body;
+
+    var lonC= parseInt(location.longitude);
+    var latC = parseInt(location.latitude);
+    lonC = 77.665;
+    latC= 27.488;
+    db.collection('venue').find({'loc':{'$near':{'$geometry':{'type':'Point','coordinates':[lonC,latC]}}}}).toArray(function (err, venueList) {
        db.collection('offers').find().toArray(function (err, offerList) {
             res.json({'venue':venueList,'offer':offerList});
         });
@@ -25,14 +31,23 @@ router.get('/totaldata', function(req, res) {
  */
 router.post('/addvenue', function(req, res) {
     var db = req.db;
-    db.collection('venue').insert(req.body, function(err, result){
-        console.log(err);
+
+    var newVen = req.body;
+    console.log(newVen);
+    var longC = parseFloat(newVen.loc.coordinates[0]);
+    var latC = parseFloat(newVen.loc.coordinates[1]);
+    newVen.loc.coordinates=[longC,latC];
+    newVen.loc.type = "Point";
+    console.log(newVen);
+    db.collection('venue').insert(newVen, function(err, result){
+        ;
         if(err === null){
             db.collection('venue').find().toArray(function (err, items) {
 
               res.json(items);
              });
         }else{
+        	console.log(err)
         	res.send({ msg: err });
         }
 

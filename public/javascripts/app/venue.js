@@ -7,9 +7,17 @@ define(["../../javascripts/app/common"],
     addVenue:function (event) {
         event.preventDefault();
        // If it is, compile all user info into one object
+        var coord =[];
+        var latC = ($('#venueLatitude').val()==='')?"-1":($('#venueLatitude').val());
+        var longC =   ($('#venueLongitude').val()==='')?"-1":($('#venueLongitude').val());
+        coord.push(longC);
+        coord.push(latC);
         var nVenue = {
             'name': $('#venueName').val(),
             'image':$('#venueImage').val(),
+            'loc':{
+                    'coordinates':coord
+                },
             'address': $('#venueAddress').val(),
             'phone': $('#venueName').val(),
             'sDescription': $('#venueShortDesc').val(),
@@ -22,7 +30,7 @@ define(["../../javascripts/app/common"],
         console.log(nVenue);
         if(nVenue.name ==='' || nVenue.address ==='' || nVenue.phone ===''
         || nVenue.sDescription ===''
-         || nVenue.timings ==='' || nVenue.city ==='0' || nVenue.type ==='0' ){
+         || nVenue.timings ==='' ||  nVenue.latitude === ''|| nVenue.longitude === '' || nVenue.city ==='0' || nVenue.type ==='0' ){
              alert('Please fill in all details');
              return;
         }
@@ -112,7 +120,8 @@ define(["../../javascripts/app/common"],
         $('#venueInfoPhone').val(thisObject.phone);
         $('#venueInfoLocation').val(thisObject.city);
         $('#venueInfoTimings').val(thisObject.timings);
-
+        $('#venueInfoLatitude').val(thisObject.latitude);
+        $('#venueInfoLongitude').val(thisObject.longitude);
     }
 
 }

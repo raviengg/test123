@@ -15,6 +15,7 @@ define(["../../javascripts/app/common"],
                     'timeInfo':$('#offerTimeInfo').val(),
                     'startDate': $('#offerStartDate').val(),
                     'endDate': $('#offerEndDate').val(),
+                    'image':$('#offerImage').val(),
                     'venue': {
                                 '_id':venueV,
                                 'name':$('#offerVenueV option[value="'+venueV+'"]').text()
@@ -70,7 +71,7 @@ define(["../../javascripts/app/common"],
             // For each item in our JSON, add a table row and cells to the content string
             $.each(this.offerListData, function(){
                 tableContent += '<tr>';
-                tableContent += '<td><a href="#" class="linkshowvenue" rel="' + this.header + '" title="Show Details">' + this.header+ '</td>';
+                tableContent += '<td><a href="#" class="linkshowoffer" rel="' + this.header + '" title="Show Details">' + this.header+ '</td>';
                 tableContent += '<td>' + this.venue.name + '</td>';
                 tableContent += '<td><a href="#" class="linkdeleteoffer" rel="' + this._id + '">delete</a></td>';
                 tableContent += '</tr>';
@@ -87,8 +88,32 @@ define(["../../javascripts/app/common"],
                 this.intialised = true;
                 $('#offerList table tbody').on('click', 'td a.linkdeleteoffer', {'url':'/offers/deleteoffer/','type':'offer'},common.deleteEntity);
                 $('#btnAddOffer').on('click', this.addOffer);
+                $('#offerList table tbody').on('click', 'td a.linkshowoffer',{'self':this}, this.showInfo);
             }
-        }
+        },
+    // Show User Info
+     showInfo:function(event) {
+
+        // Prevent Link from Firing
+        event.preventDefault();
+
+        // Retrieve offername from link rel attribute
+        var thisOfferName = $(this).attr('rel');
+
+        // Get Index of object based on id value
+        var arrayPosition = event.data.self.offerListData.map(function(arrayItem) { return arrayItem.name; }).indexOf(thisOfferName);
+
+        // Get our User Object
+        var thisObject = event.data.self.offerListData[arrayPosition];
+
+        //Populate Info Box
+        $('offerInfoHeader').val(thisObject.header);
+        $('offerInfoPhotoString').val(thisObject.photoString);
+        $('offerInfoType').val(thisObject.type);
+        $('offerInfoIsFeatured').val(thisObject.isFeatured);
+        $('offerTimeInfo').val(thisObject.timeInfo);
+        $('offerInfoVenueV').val(thisObject.venue._id);
+    }
 
     }
 });

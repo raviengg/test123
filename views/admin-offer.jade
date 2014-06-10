@@ -17,8 +17,25 @@ html
                 strong Header:
                 input#offerInfoHeader(type='text')
                 br
+                strong Photo:
+                input#offerInfoPhotoString(type='text')
                 strong Timings:
-                input#offerInfoPhoto(type='text')
+                input#offerTimeInfo(type='text')
+                br
+                select#offerInfoType
+                    option(value="0") Select Type
+                    option(value="Food") Food
+                    option(value="Drink") Drink
+                    option(value="GuestList") GuestList
+                select#offerInfoIsFeatured
+                    option(value="-1") Is Featured
+                    option(value="0") False
+                    option(value="1") True
+                br
+                select#offerInfoVenueV
+                    option(value="0") Select a Venue
+                    -for (var x = 0; x < venue.length; x++)
+                        option(value= "#{venue[x]._id}") #{venue[x].name}
                 br
                 button#edit Edit
         #offerList
@@ -35,6 +52,7 @@ html
             fieldset
                 input#offerHeaderString(type='text', placeholder='header string')
                 input#offerPhotoString(type='text', placeholder='photo string')
+                input#offerImage(type='text',placeholder='image')
                 br
                 select#offerType
                     option(value="0") Select Type
