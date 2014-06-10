@@ -61,7 +61,7 @@ define(["../../javascripts/app/common"],
             });
 
         },
-        initalised:false,
+        initialised:false,
         offerListData:[],
         populateTable:function () {
 

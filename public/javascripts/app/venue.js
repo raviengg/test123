@@ -63,7 +63,7 @@ define(["../../javascripts/app/common"],
             }
         });
     },
-        initalised:false,
+        initialised:false,
         venueListData:[],
         init:function(){
             var self = this;
@@ -91,7 +91,7 @@ define(["../../javascripts/app/common"],
 
         // Inject the whole content string into our existing HTML table
         $('#venueList table tbody').html(tableContent);
-        if(!this.initalised){
+        if(!this.initialised){
             $('#btnAddVenue').on('click', {'self':this},this.addVenue);
             $('#venueList table tbody').on('click', 'td a.linkdeletevenue', {'url':'/venues/deletevenue/','type':'venue'},common.deleteEntity);
             $('#venueList table tbody').on('click', 'td a.linkshowvenue',{'self':this}, this.showInfo);
