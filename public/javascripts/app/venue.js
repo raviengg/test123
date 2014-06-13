@@ -42,15 +42,18 @@ define(["../../javascripts/app/common"],
         if(nVenue.name ==='' || nVenue.address ==='' || nVenue.phone ===''
         || nVenue.sDescription ===''
          || nVenue.timings ==='' ||  nVenue.latitude === ''|| nVenue.longitude === '' || nVenue.city ==='0' || nVenue.type ==='0' ){
-             alert('Please fill in all details');
-             return -1;
+
+             return "empty";
         }
         return nVenue;
     },
     editVenue:function(event){
        event.preventDefault();
        // If it is, compile all user info into one object
-         var nVenue = event.data.self.getVenueObject('info');
+        var nVenue = event.data.self.getVenueObject('info');
+        if(typeof(nVenue)=='string'){
+            return alert('Please fill in all details');
+        }
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'PUT',
@@ -81,35 +84,10 @@ define(["../../javascripts/app/common"],
     },
     addVenue:function (event) {
         event.preventDefault();
-       // If it is, compile all user info into one object
-        var coord =[];
-        var latC = ($('#venueLatitude').val()==='')?"-1":($('#venueLatitude').val());
-        var longC =   ($('#venueLongitude').val()==='')?"-1":($('#venueLongitude').val());
-        coord.push(longC);
-        coord.push(latC);
-        var nVenue = {
-            'name': $('#venueName').val(),
-            'image':$('#venueImage').val(),
-            'loc':{
-                    'coordinates':coord
-                },
-            'address': $('#venueAddress').val(),
-            'phone': $('#venueName').val(),
-            'sDescription': $('#venueShortDesc').val(),
-            'bDescription': $('#venueLongDesc').val(),
-            'timings': $('#venueTimings').val(),
-            'city':$('#venueSelCity').val(),
-            'type':$('#venueSelType').val()
+        var nVenue = event.data.self.getVenueObject('');
+        if(typeof(nVenue)=='string'){
+                    return alert('Please fill in all details');
         }
-
-        console.log(nVenue);
-        if(nVenue.name ==='' || nVenue.address ==='' || nVenue.phone ===''
-        || nVenue.sDescription ===''
-         || nVenue.timings ==='' ||  nVenue.latitude === ''|| nVenue.longitude === '' || nVenue.city ==='0' || nVenue.type ==='0' ){
-             alert('Please fill in all details');
-             return;
-        }
-
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
