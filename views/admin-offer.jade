@@ -13,20 +13,18 @@ html
         #offerInfo
             h2 Offer Info
             p
-
                 strong Header:
                 input#offerInfoHeader(type='text')
                 br
                 strong Photo:
-                input#offerInfoPhotoString(type='text')
-                strong Timings:
-                input#offerTimeInfo(type='text')
-                br
+                input#offerInfoPhoto(type='text',placeholder='photo 1')
+                input#offerInfoImage(type='text',placeholder='photo 2')
                 select#offerInfoType
                     option(value="0") Select Type
                     option(value="Food") Food
                     option(value="Drink") Drink
                     option(value="GuestList") GuestList
+                    br
                 select#offerInfoIsFeatured
                     option(value="-1") Is Featured
                     option(value="0") False
@@ -37,6 +35,11 @@ html
                     -for (var x = 0; x < venue.length; x++)
                         option(value= "#{venue[x]._id}") #{venue[x].name}
                 br
+                input#offerInfoStartDate.date(type='text',placeholder='Start Date')
+                input#offerInfoEndDate.date(type='text',placeholder='End Date')
+                br
+                strong Timings:
+                input#offerInfoTime(type='text')
                 button#edit Edit
         #offerList
             table
@@ -50,9 +53,9 @@ html
         h2 Add Offer
         #addUser
             fieldset
-                input#offerHeaderString(type='text', placeholder='header string')
-                input#offerPhotoString(type='text', placeholder='photo string')
-                input#offerImage(type='text',placeholder='image')
+                input#offerHeader(type='text', placeholder='header string')
+                input#offerPhoto(type='text', placeholder='photo 1')
+                input#offerImage(type='text',placeholder='photo 2')
                 br
                 select#offerType
                     option(value="0") Select Type
@@ -72,7 +75,7 @@ html
                 input#offerStartDate.date(type='text',placeholder='Start Date')
                 input#offerEndDate.date(type='text',placeholder='End Date')
                 br
-                input#offerTimeInfo(type='text',placeholder='Timing Information')
+                input#offerTime(type='text',placeholder='Timing Information')
                 br
                 button#btnAddOffer Add Offer
         // /ADD Offer

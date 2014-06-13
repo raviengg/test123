@@ -30,9 +30,13 @@ define(["../../javascripts/app/common"],
             'bDescription': $(prependId + 'LongDesc').val(),
             'timings': $(prependId + 'Timings').val(),
             'city':$(prependId + 'SelCity').val(),
-            'type':$(prependId + 'SelType').val(),
-            '_id':$(prependId + 'Name').data('id')
-        }
+            'type':$(prependId + 'SelType').val()
+                    }
+
+            if(ele ==="info"){
+                nVenue._id=$(prependId + 'Name').data('id');
+            }
+
 
         console.log(nVenue);
         if(nVenue.name ==='' || nVenue.address ==='' || nVenue.phone ===''

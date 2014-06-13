@@ -3,32 +3,81 @@ define(["../../javascripts/app/common"],
         //return a function to define "foo/title".
         //It gets or sets the window title.
         return{
-		    addOffer:function(event) {
-                event.preventDefault();
-                var venueV = $('#offerVenueV').val();
-
+            getOffer:function(type){
+                var prepend;
+                if(type ==='info'){
+                    prepend='#offerInfo';
+                }else{
+                    prepend='#offer';
+                }
+                var venueV = $(prepend+'VenueV').val();
                 var nOffer = {
-                    'header': $('#offerHeaderString').val(),
-                    'photoString': $('#offerPhotoString').val(),
-                    'type': $('#offerType').val(),
-                    'isFeatured': $('#offerIsFeatured').val(),
-                    'timeInfo':$('#offerTimeInfo').val(),
-                    'startDate': $('#offerStartDate').val(),
-                    'endDate': $('#offerEndDate').val(),
-                    'image':$('#offerImage').val(),
+                    'header': $(prepend+'Header').val(),
+                    'photoString': $(prepend+'Photo').val(),
+                    'type': $(prepend+'Type').val(),
+                    'isFeatured': $(prepend+'IsFeatured').val(),
+                    'timeInfo':$(prepend+'Time').val(),
+                    'startDate': $(prepend+'StartDate').val(),
+                    'endDate': $(prepend+'EndDate').val(),
+                    'image':$(prepend+'Image').val(),
                     'venue': {
                                 '_id':venueV,
-                                'name':$('#offerVenueV option[value="'+venueV+'"]').text()
+                                'name':$(prepend+'VenueV option[value="'+venueV+'"]').text()
                                 }
                     }
+                if(type ==='info'){
+                    nOffer._id =$(prepend+'Header').data('id') ;
+                }
                 console.log(nOffer);
 
                 if(nOffer.header ==='' || nOffer.photoString ==='' || nOffer.type ==='0'
                     || nOffer.isFeatured ===''
                     || nOffer.startDate ==='' || nOffer.endDate ==='' || nOffer.timeInfo ==='0'||  nOffer.venue._id ==='0' ){
-                    alert('Please fill in all details');
-                    return;
+                    return 'empty';
                 }
+                return nOffer;
+            },
+            editOffer:function(event){
+
+                event.preventDefault();
+
+                var nOffer = event.data.self.getOffer('info');
+                if(typeof(nOffer)=='string'){
+                    return alert('Please fill in all details');
+                }
+
+                var self = this;
+                // Use AJAX to post the object to our adduser service
+                $.ajax({
+                    type: 'PUT',
+                    data: nOffer,
+                    url: '/offers/editoffer/111',
+                    dataType: 'JSON'
+                }).done(function( response ) {
+                    alert('success');
+                    // Check for successful (blank) response
+                    if (typeof response  ==="object") {
+                        // Clear the form inputs
+                        $("[id^=offer]").val('');
+                        // Update the table
+                        event.data.self.offerListData = response;
+                        event.data.self.populateTable();
+                    }
+                    else {
+                        // If something goes wrong, alert the error message that our service returned
+                        alert('Error: ' + response.msg);
+                    }
+                });
+
+            },
+		    addOffer:function(event) {
+                event.preventDefault();
+
+                var nOffer = event.data.self.getOffer('');
+                if(typeof(nOffer)=='string'){
+                    return alert('Please fill in all details');
+                }
+
                 var self = this;
                 // Use AJAX to post the object to our adduser service
                 $.ajax({
@@ -85,9 +134,10 @@ define(["../../javascripts/app/common"],
 
             if(!this.initialised){
                 $( ".date" ).datepicker();
-                this.intialised = true;
+                this.initialised = true;
                 $('#offerList table tbody').on('click', 'td a.linkdeleteoffer', {'url':'/offers/deleteoffer/','type':'offer'},common.deleteEntity);
                 $('#btnAddOffer').on('click', {'self':this},this.addOffer);
+                $('#edit').on('click', {'self':this},this.editOffer);
                 $('#offerList table tbody').on('click', 'td a.linkshowoffer',{'self':this}, this.showInfo);
             }
         },
@@ -107,12 +157,16 @@ define(["../../javascripts/app/common"],
         var thisObject = event.data.self.offerListData[arrayPosition];
 
         //Populate Info Box
-        $('offerInfoHeader').val(thisObject.header);
-        $('offerInfoPhotoString').val(thisObject.photoString);
-        $('offerInfoType').val(thisObject.type);
-        $('offerInfoIsFeatured').val(thisObject.isFeatured);
-        $('offerTimeInfo').val(thisObject.timeInfo);
-        $('offerInfoVenueV').val(thisObject.venue._id);
+        $('#offerInfoHeader').val(thisObject.header);
+        $('#offerInfoHeader').data('id',thisObject._id);
+        $('#offerInfoPhoto').val(thisObject.photoString);
+        $('#offerInfoType').val(thisObject.type);
+        $('#offerInfoIsFeatured').val(thisObject.isFeatured);
+        $('#offerInfoTime').val(thisObject.timeInfo);
+        $('#offerInfoStartDate').val(thisObject.startDate);
+        $('#offerInfoEndDate').val(thisObject.endDate);
+        $('#offerInfoVenueV').val(thisObject.venue._id);
+
     }
 
     }

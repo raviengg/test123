@@ -20,6 +20,26 @@ router.get('/offerlist', function(req, res) {
     });
 });
 
+
+/*
+ * PUT to editdoffer.
+ */
+router.put('/editoffer/:id', function(req, res) {
+    var db = req.db;
+    var nOffer = req.body;
+
+    db.collection('offers').update({'_id':nOffer._id},nOffer,{'safe':true} ,function(err, result){
+        if(err === null){
+            db.collection('offers').find().toArray(function (err, items) {
+              res.json(items);
+             });
+        }else{
+        	console.log(err)
+        	res.send({ msg: err });
+        }
+
+    });
+});
 /*
  * POST to addoffer.
  */

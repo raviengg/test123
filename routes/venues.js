@@ -53,19 +53,7 @@ router.post('/addvenue', function(req, res) {
 
 router.put('/editvenue/:id', function(req, res) {
     var db = req.db;
-
-
     var newVen = req.body;
-
-    //db.ObjectID.createFromHexString(newVen._id);
-  /*  console.log(newVen._id +  typeof(newVen._id))
-
-    db.collection('venue').findById(newVen._id,function(err,result){
-       console.log( result);
-    });
-*/
-
-
     var longC = parseFloat(newVen.loc.coordinates[0]);
     var latC = parseFloat(newVen.loc.coordinates[1]);
     newVen.loc.coordinates=[longC,latC];
