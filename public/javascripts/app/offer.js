@@ -43,8 +43,8 @@ define(["../../javascripts/app/common"],
                         // Clear the form inputs
                         $("[id^=offer]").val('');
                         // Update the table
-                        self.offerListData = response;
-                        self.populateTable();
+                        event.data.self.offerListData = response;
+                        event.data.self.populateTable();
                     }
                     else {
                         // If something goes wrong, alert the error message that our service returned
@@ -71,7 +71,7 @@ define(["../../javascripts/app/common"],
             // For each item in our JSON, add a table row and cells to the content string
             $.each(this.offerListData, function(){
                 tableContent += '<tr>';
-                tableContent += '<td><a href="#" class="linkshowoffer" rel="' + this.header + '" title="Show Details">' + this.header+ '</td>';
+                tableContent += '<td><a href="#" class="linkshowoffer" rel="' + this._id + '" title="Show Details">' + this.header+ '</td>';
                 tableContent += '<td>' + this.venue.name + '</td>';
                 tableContent += '<td><a href="#" class="linkdeleteoffer" rel="' + this._id + '">delete</a></td>';
                 tableContent += '</tr>';
@@ -87,7 +87,7 @@ define(["../../javascripts/app/common"],
                 $( ".date" ).datepicker();
                 this.intialised = true;
                 $('#offerList table tbody').on('click', 'td a.linkdeleteoffer', {'url':'/offers/deleteoffer/','type':'offer'},common.deleteEntity);
-                $('#btnAddOffer').on('click', this.addOffer);
+                $('#btnAddOffer').on('click', {'self':this},this.addOffer);
                 $('#offerList table tbody').on('click', 'td a.linkshowoffer',{'self':this}, this.showInfo);
             }
         },
@@ -101,7 +101,7 @@ define(["../../javascripts/app/common"],
         var thisOfferName = $(this).attr('rel');
 
         // Get Index of object based on id value
-        var arrayPosition = event.data.self.offerListData.map(function(arrayItem) { return arrayItem.name; }).indexOf(thisOfferName);
+        var arrayPosition = event.data.self.offerListData.map(function(arrayItem) { return arrayItem._id; }).indexOf(thisOfferName);
 
         // Get our User Object
         var thisObject = event.data.self.offerListData[arrayPosition];

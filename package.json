@@ -12,6 +12,7 @@
         "jade": "*",
         "mongodb": "*",
         "mongoskin": "*",
-        "validator":"3.12.x"
+        "validator":"3.12.x",
+        "node-uuid":"1.4.1"
     }
 }

@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-
+var uuid = require('node-uuid');
 router.get('/', function(req, res) {
-    var db = req.db;  
+    var db = req.db;
     db.collection('offers').find().toArray(function (err, items) {
         res.json(items);
     });
@@ -25,11 +25,18 @@ router.get('/offerlist', function(req, res) {
  */
 router.post('/addoffer', function(req, res) {
     var db = req.db;
-    db.collection('offers').insert(req.body, function(err, result){
-        console.log(err);
-        res.send(
-            (err === null) ? { msg: '' } : { msg: err }
-        );
+    var nOffer = req.body;
+    nOffer._id =  uuid.v4().replace(/-/g, '');
+    db.collection('offers').insert(nOffer, function(err, result){
+        if(err === null){
+            db.collection('offers').find().toArray(function (err, items) {
+              res.json(items);
+             });
+        }else{
+        	console.log(err)
+        	res.send({ msg: err });
+        }
+
     });
 });
 

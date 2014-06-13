@@ -14,7 +14,7 @@ html
             h2 Venue Info
             p
                 strong Name:
-                input#venueInfoName(type='text')
+                input#venueInfoName(type='text',data-id='sex')
                 br
                 strong Address:
                 input#venueInfoAddress(type='text')
@@ -23,19 +23,33 @@ html
                 input#venueInfoPhone(type='text')
                 br
                 strong Latitude:
-                input#venueInfoLatitude(type='number')
+                input#venueInfoLatitude(type='text')
                 br
                 strong Longitude:
-                input#venueInfoLongitude(type='number')
+                input#venueInfoLongitude(type='text')
                 br
                 strong Timings
                 input#venueInfoTimings(type='text')
-                strong Location:
-                select#venueInfoLocation
+                select#venueInfoSelCity
                     option(value="0") Select City
                     option(value="Gurgaon") Gurgaon
                     option(value="Noida") Noida
                     option(value="Delhi") Delhi
+                br
+                select#venueInfoSelType
+                    option(value="0") Select Type
+                    option(value="Pub") Pub
+                    option(value="Night Club") Night Club
+                    option(value="Resto Bar") Resto Bar
+                br
+                strong Image:
+                input#venueInfoImage(type='text')
+                br
+                strong Short Description
+                textarea#venueInfoShortDesc
+                br
+                strong Long Description
+                textarea#venueInfoLongDesc
                 br
                 button#edit Edit
         #venueList
