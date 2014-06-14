@@ -43,7 +43,7 @@ define(["../../javascripts/app/common"],
                 if(typeof(nEvent)=='string'){
                     return alert('Please fill in all details');
                 }
-
+                console.log('ssss')
                 var self = this;
                 // Use AJAX to post the object to our adduser service
                 $.ajax({
@@ -135,7 +135,7 @@ define(["../../javascripts/app/common"],
                 this.initialised = true;
                 $('#eventList table tbody').on('click', 'td a.linkdeleteevent', {'url':'/events/delete/','type':'event'},common.deleteEntity);
                 $('#btnAddEvent').on('click', {'self':this},this.addEvent);
-                $('#edit').on('click', {'self':this},this.editEvent);
+                $('#editEvent').on('click', {'self':this},this.editEvent);
                 $('#eventList table tbody').on('click', 'td a.linkshowevent',{'self':this}, this.showInfo);
             }
         },

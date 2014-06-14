@@ -19,7 +19,6 @@ router.get('/admin-venue', function(req, res) {
 router.get('/admin-offer', function(req, res) {
     var db = req.db;
     db.collection('venue').find().toArray(function (err, venue) {
-    console.log(venue)
           res.render('admin-offer', { title: 'Offers' ,'venue':venue});
     });
 });
@@ -29,7 +28,6 @@ router.get('/admin-offer', function(req, res) {
 router.get('/admin-event', function(req, res) {
     var db = req.db;
     db.collection('venue').find().toArray(function (err, venue) {
-    console.log(venue)
           res.render('admin-event', { title: 'Events' ,'venue':venue});
     });
 });
