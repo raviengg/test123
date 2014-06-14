@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 /*
  * GET eventlist.
  */
-router.get('/eventlist', function(req, res) {
+router.get('/list', function(req, res) {
     var db = req.db;
     db.collection('events').find().toArray(function (err, items) {
         res.json(items);

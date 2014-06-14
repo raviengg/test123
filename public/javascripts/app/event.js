@@ -102,7 +102,7 @@ define(["../../javascripts/app/common"],
         init:function(){
 
             var self = this;
-            $.getJSON( '/events/eventlist', function( data ) {
+            $.getJSON( '/events/list', function( data ) {
                 self.eventListData = data;
                 self.populateTable();
             });
