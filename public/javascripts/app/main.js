@@ -1,4 +1,4 @@
-define(["../../javascripts/app/user","../../javascripts/app/offer","../../javascripts/app/venue"],function (user,offer,venue) {
+define(["../../javascripts/app/user","../../javascripts/app/offer","../../javascripts/app/venue","../../javascripts/app/event"],function (user,offer,venue,event) {
     function initialize(){
         console.log(window.location.pathname);
         var cUrl = window.location.pathname
@@ -7,7 +7,7 @@ define(["../../javascripts/app/user","../../javascripts/app/offer","../../javasc
             }else if(cUrl == '/admin-offer'){
                 offer.init() ;
             }else if(cUrl == '/admin-event'){
-                populateEventTable();
+                event.init();
             }else if(cUrl == '/admin-venue'){
                 venue.init();
             }

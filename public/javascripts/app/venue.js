@@ -58,7 +58,7 @@ define(["../../javascripts/app/common"],
         $.ajax({
             type: 'PUT',
             data: nVenue,
-            url: '/venues/editvenue/1231',
+            url: '/venues/edit/1231',
             dataType: 'JSON'
         }).done(function( response ) {
 
@@ -92,7 +92,7 @@ define(["../../javascripts/app/common"],
         $.ajax({
             type: 'POST',
             data: nVenue,
-            url: '/venues/addvenue',
+            url: '/venues/add',
             dataType: 'JSON'
         }).done(function( response ) {
 
@@ -120,7 +120,7 @@ define(["../../javascripts/app/common"],
         venueListData:[],
         init:function(){
             var self = this;
-            $.getJSON( '/venues/venuelist', function( data ) {
+            $.getJSON( '/venues/list', function( data ) {
                 self.venueListData = data;
                 self.populateTable();
             });
@@ -147,7 +147,7 @@ define(["../../javascripts/app/common"],
         if(!this.initialised){
             $('#btnAddVenue').on('click', {'self':this},this.addVenue);
             $('#edit').on('click', {'self':this},this.editVenue);
-            $('#venueList table tbody').on('click', 'td a.linkdeletevenue', {'url':'/venues/deletevenue/','type':'venue'},common.deleteEntity);
+            $('#venueList table tbody').on('click', 'td a.linkdeletevenue', {'url':'/venues/delete/','type':'venue'},common.deleteEntity);
             $('#venueList table tbody').on('click', 'td a.linkshowvenue',{'self':this}, this.showInfo);
             this.initialised = true;
         }

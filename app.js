@@ -12,16 +12,17 @@ process.argv.forEach(function (val, index, array) {
   console.log(index + ': ' + val);
   if(index == 2 && val == "local"){
   db = mongo.db("mongodb://localhost:27017/partyy", {native_parser:true});
-  }else{ 
+  }else{
  // db = mongo.db("mongodb://gir.sharma@gmail.com:india123@oceanic.mongohq.com:10019/app25479731",{native_parser:true});
-  db = mongo.db("mongodb://girish:india123@oceanic.mongohq.com:10019/app25479731",{safe: true, auto_reconnect: true}); 
+  db = mongo.db("mongodb://girish:india123@oceanic.mongohq.com:10019/app25479731",{safe: true, auto_reconnect: true});
   }
 });
- 
+
 var routes = require('./routes/index'),
 	users = require('./routes/users'),
 	offers = require('./routes/offers'),
-	venues = require('./routes/venues');
+	venues = require('./routes/venues'),
+	events = require('./routes/events');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/venues', venues);
 app.use('/offers', offers);
+app.use('/events',events);
 
 
 /// catch 404 and forwarding to error handler

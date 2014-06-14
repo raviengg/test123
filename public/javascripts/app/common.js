@@ -31,6 +31,8 @@ define([],
               window.location.href = '/admin-offer';
             }else if(entityType ==="venue"){
                 window.location.href = '/admin-venue';
+            }else if(entityType ==="event"){
+            window.location.href = '/admin-event';
             }
         });
     }

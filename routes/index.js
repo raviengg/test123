@@ -22,8 +22,16 @@ router.get('/admin-offer', function(req, res) {
     console.log(venue)
           res.render('admin-offer', { title: 'Offers' ,'venue':venue});
     });
+});
 
 
+// get offer admin page
+router.get('/admin-event', function(req, res) {
+    var db = req.db;
+    db.collection('venue').find().toArray(function (err, venue) {
+    console.log(venue)
+          res.render('admin-event', { title: 'Events' ,'venue':venue});
+    });
 });
 
 module.exports = router;

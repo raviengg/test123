@@ -4,7 +4,7 @@ var uuid = require('node-uuid');
 /*
  * GET venuelist.
  */
-router.get('/venuelist', function(req, res) {
+router.get('/list', function(req, res) {
     var db = req.db;
     db.collection('venue').find().toArray(function (err, items) {
         res.json(items);
@@ -26,11 +26,10 @@ router.get('/totaldata', function(req, res) {
  * POST to addvenue.
  */
 
-router.post('/addvenue', function(req, res) {
+router.post('/add', function(req, res) {
     var db = req.db;
 
     var newVen = req.body;
-    console.log(newVen);
     var longC = parseFloat(newVen.loc.coordinates[0]);
     var latC = parseFloat(newVen.loc.coordinates[1]);
     newVen.loc.coordinates=[longC,latC];
@@ -51,7 +50,7 @@ router.post('/addvenue', function(req, res) {
 });
 
 
-router.put('/editvenue/:id', function(req, res) {
+router.put('/edit/:id', function(req, res) {
     var db = req.db;
     var newVen = req.body;
     var longC = parseFloat(newVen.loc.coordinates[0]);
@@ -76,7 +75,7 @@ router.put('/editvenue/:id', function(req, res) {
 /*
  * DELETE to deletevenue.
  */
-router.delete('/deletevenue/:id', function(req, res) {
+router.delete('/delete/:id', function(req, res) {
     var db = req.db;
     var venueToDelete = req.params.id;
     db.collection('venue').removeById(venueToDelete, function(err, result) {

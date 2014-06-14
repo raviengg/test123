@@ -1,0 +1,61 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/jquery-ui-1.10.4.custom.min.css')
+        script(data-main='/javascripts/app' src='/javascripts/lib/require.js')
+    body
+    a(href='/') Back
+    // Wrapper
+    #wrapper
+        // Event INFO
+        #eventInfo
+            h2 Event Info
+            p
+                input#eventInfoTitle(type='text',placeholder='Title')
+                br
+                input#eventInfoPhoto1(type='text',placeholder='photo 1')
+                br
+                input#eventInfoPhoto2(type='text',placeholder='photo 2')
+                br
+                input#eventInfoDate.date(type='text',placeholder='Start Date')
+                textarea#eventInfoDesc(placeholder='Description')
+                br
+                select#eventInfoVenue
+                    option(value="0") Select a Venue
+                    -for (var x = 0; x < venue.length; x++)
+                        option(value= "#{venue[x]._id}") #{venue[x].name}
+                br
+                strong Timings:
+                input#eventInfoTime(type='text',placeholder='Timing Information')
+                button#edit Edit
+        #eventList
+            table
+                thead
+                    th Event Name
+                    th Venue
+                    th Delete?
+                tbody
+
+        // ADD Event
+        h2 Add Event
+        #addUser
+            fieldset
+                input#eventTitle(type='text', placeholder='title')
+                input#eventPhoto1(type='text', placeholder='photo 1')
+                input#eventPhoto2(type='text',placeholder='photo 2')
+                br
+                input#eventDate.date(type='text',placeholder='Start Date')
+                br
+                textarea#eventDesc(placeholder='Description')
+                br
+                select#eventVenue
+                    option(value="0") Select a Venue
+                    -for (var x = 0; x < venue.length; x++)
+                        option(value= "#{venue[x]._id}") #{venue[x].name}
+                input#eventTime(type='text',placeholder='Timing Information')
+                br
+                button#btnAddEvent Add Event
+        // /ADD Event
+    // /WRAPPER
