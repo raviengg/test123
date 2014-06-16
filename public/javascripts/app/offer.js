@@ -30,11 +30,23 @@ define(["../../javascripts/app/common"],
                 }
                 console.log(nOffer);
 
+				
                 if(nOffer.header ==='' || nOffer.photoString ==='' || nOffer.type ==='0'
                     || nOffer.isFeatured ===''
                     || nOffer.startDate ==='' || nOffer.endDate ==='' || nOffer.timeInfo ==='0'||  nOffer.venue._id ==='0' ){
                     return 'empty';
                 }
+				else{
+					var sDate = new Date(nOffer.startDate);
+					var eDate = new Date(nOffer.endDate);
+					var cDate = new Date();
+					if(sDate > eDate){
+						return 'dateError';
+					}
+					else if(sDate < cDate){
+						return 'dateError2';
+					}
+				}
                 return nOffer;
             },
             editOffer:function(event){
@@ -75,7 +87,12 @@ define(["../../javascripts/app/common"],
 
                 var nOffer = event.data.self.getOffer('');
                 if(typeof(nOffer)=='string'){
-                    return alert('Please fill in all details');
+                    if(nOffer == 'empty')
+						return alert('Please fill in all details');
+					else if(nOffer == 'dateError')
+						return alert('End Date cannot be less than Start Date');
+					else if(nOffer == 'dateError2')
+						return alert('Start Date cannot be less than Current Date');
                 }
 
                 var self = this;
