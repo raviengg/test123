@@ -17,7 +17,10 @@ router.get('/totaldata', function(req, res) {
     var lon = parseFloat(req.get('lon'));
     db.collection('venue').find({'loc':{'$near':{'$geometry':{'type':'Point','coordinates':[lon,lat]}}}}).toArray(function (err, venueList) {
        db.collection('offers').find().toArray(function (err, offerList) {
-              res.json({'venue':venueList,'offer':offerList});
+              db.collection('events').find().toArray(function (err, eventList) {
+              res.json({'venue':venueList,'offer':offerList,'event':eventList});
+        });
+
         });
     });
 });
