@@ -30,7 +30,9 @@ define(["../../javascripts/app/common"],
             'bDescription': $(prependId + 'LongDesc').val(),
             'timings': $(prependId + 'Timings').val(),
             'city':$(prependId + 'SelCity').val(),
-            'type':$(prependId + 'SelType').val()
+            'type':$(prependId + 'SelType').val(),
+			'extra1':$(prependId + 'ExtraInfo1').val(),
+			'extra2':$(prependId + 'ExtraInfo2').val()
                     }
 
             if(ele ==="info"){
@@ -41,7 +43,7 @@ define(["../../javascripts/app/common"],
         console.log(nVenue);
         if(nVenue.name ==='' || nVenue.address ==='' || nVenue.phone ===''
         || nVenue.sDescription ===''
-         || nVenue.timings ==='' ||  nVenue.latitude === ''|| nVenue.longitude === '' || nVenue.city ==='0' || nVenue.type ==='0' ){
+         || nVenue.timings ==='' ||  nVenue.latitude === ''|| nVenue.longitude === '' || nVenue.city ==='0' || nVenue.type ==='0' || nVenue.extra1 ==='' || nVenue.extra2 ==='' ){
 
              return "empty";
         }
@@ -182,6 +184,8 @@ define(["../../javascripts/app/common"],
         $('#venueInfoLongDesc').val(thisObject.bDescription);
         $('#venueInfoSelCity').val(thisObject.city);
         $('#venueInfoSelType').val(thisObject.type);
+		$('#venueInfoExtra1').val(thisObject.extra1);
+        $('#venueInfoExtra2').val(thisObject.extra2);
 
     }
 
