@@ -10,6 +10,8 @@ define(["../../javascripts/app/common"],
 
         if(ele ==="info"){
             prependId = '#venueInfo';
+			var newVersion = parseInt($(prependId + 'Version').val()) + 1;
+			$(prependId + 'Version').val(newVersion);
         }else{
             prependId = '#venue';
         }
@@ -36,7 +38,8 @@ define(["../../javascripts/app/common"],
 			'extra3':$(prependId + 'ExtraInfo3').val(),
 			'extra4':$(prependId + 'ExtraInfo4').val(),
 			'extra5':$(prependId + 'ExtraInfo5').val(),
-			'active':$(prependId + 'SelActive').val()
+			'active':$(prependId + 'SelActive').val(),
+			'version':$(prependId + 'Version').val()
                     }
 
             if(ele ==="info"){
@@ -199,6 +202,7 @@ define(["../../javascripts/app/common"],
         $('#venueInfoExtra4').val(thisObject.extra4);
 		$('#venueInfoExtra5').val(thisObject.extra5);
 		$('#venueInfoSelActive').val(thisObject.active);
+		$('#venueInfoVersion').val(thisObject.version);
 
     }
 

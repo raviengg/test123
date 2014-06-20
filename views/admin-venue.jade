@@ -41,11 +41,16 @@ html
                     option(value="Pub") Pub
                     option(value="Night Club") Night Club
                     option(value="Resto Bar") Resto Bar
-                br
+                //br
+                &nbsp&nbsp
                 select#venueInfoSelActive
                     option(value="0") Active
                     option(value="Y") Yes
                     option(value="N") No
+                br
+                strong Version#
+                input#venueInfoVersion(type='number',readonly='readonly')
+                br
                 strong Image:
                 input#venueInfoImage(type='text')
                 br
@@ -97,20 +102,26 @@ html
                 textarea#venueLongDesc
                 br
                 input#venueTimings(type='text', placeholder='Timings')
+                &nbsp&nbsp
                 select#venueSelCity
                     option(value="0") Select City
                     option(value="Gurgaon") Gurgaon
                     option(value="Noida") Noida
                     option(value="Delhi") Delhi
+                &nbsp&nbsp
                 select#venueSelType
                     option(value="0") Select Type
                     option(value="Pub") Pub
                     option(value="Night Club") Night Club
-                    option(value="Resto Bar") Resto Bar
-                Strong Active
+                    option(value="Resto Bar") Resto Bar          
+                br
+                label Active &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 select#venueSelActive
                     option(value="Y") Yes
                     option(value="N") No
+                &nbsp&nbsp
+                label Version# &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                input#venueVersion(type='text', readonly='readonly' value=1)
                 br
                 .textClass Extra1 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Extra2
                 textarea#venueExtraInfo1
