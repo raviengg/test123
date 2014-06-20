@@ -42,6 +42,10 @@ html
                     option(value="Night Club") Night Club
                     option(value="Resto Bar") Resto Bar
                 br
+                select#venueInfoSelActive
+                    option(value="0") Active
+                    option(value="Y") Yes
+                    option(value="N") No
                 strong Image:
                 input#venueInfoImage(type='text')
                 br
@@ -56,12 +60,22 @@ html
                 strong Extra2
                 textarea#venueInfoExtra2
                 br
+                strong Extra3
+                textarea#venueInfoExtra3
+                br
+                strong Extra4
+                textarea#venueInfoExtra4
+                br
+                strong Extra5
+                textarea#venueInfoExtra5
+                br
                 button#edit Edit
         #venueList
             table
                 thead
                     th Venue Name
                     th Location
+                    th Active
                     th Delete?
                 tbody
 
@@ -93,10 +107,21 @@ html
                     option(value="Pub") Pub
                     option(value="Night Club") Night Club
                     option(value="Resto Bar") Resto Bar
+                Strong Active
+                select#venueSelActive
+                    option(value="Y") Yes
+                    option(value="N") No
                 br
                 .textClass Extra1 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Extra2
                 textarea#venueExtraInfo1
                 textarea#venueExtraInfo2
+                br
+                .textClass Extra3 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Extra4
+                textarea#venueExtraInfo3
+                textarea#venueExtraInfo4
+                br
+                .textClass Extra5
+                textarea#venueExtraInfo5
                 br
 
                 button#btnAddVenue Add Venue

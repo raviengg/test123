@@ -32,7 +32,11 @@ define(["../../javascripts/app/common"],
             'city':$(prependId + 'SelCity').val(),
             'type':$(prependId + 'SelType').val(),
 			'extra1':$(prependId + 'ExtraInfo1').val(),
-			'extra2':$(prependId + 'ExtraInfo2').val()
+			'extra2':$(prependId + 'ExtraInfo2').val(),
+			'extra3':$(prependId + 'ExtraInfo3').val(),
+			'extra4':$(prependId + 'ExtraInfo4').val(),
+			'extra5':$(prependId + 'ExtraInfo5').val(),
+			'active':$(prependId + 'SelActive').val()
                     }
 
             if(ele ==="info"){
@@ -43,7 +47,7 @@ define(["../../javascripts/app/common"],
         console.log(nVenue);
         if(nVenue.name ==='' || nVenue.address ==='' || nVenue.phone ===''
         || nVenue.sDescription ===''
-         || nVenue.timings ==='' ||  nVenue.latitude === ''|| nVenue.longitude === '' || nVenue.city ==='0' || nVenue.type ==='0' || nVenue.extra1 ==='' || nVenue.extra2 ==='' ){
+         || nVenue.timings ==='' ||  nVenue.latitude === ''|| nVenue.longitude === '' || nVenue.city ==='0' || nVenue.type ==='0' ){
 
              return "empty";
         }
@@ -70,6 +74,8 @@ define(["../../javascripts/app/common"],
             if (typeof response ==="object") {
                 // Clear the form inputs
                 $("[id^=venue]").val('');
+				$("[id*=Sel]").val('0');
+				//$("[id*=SelActive]").val('Y');
                  event.data.self.venueListData = response;
                   console.log("adding")
                 // Update the table
@@ -104,6 +110,8 @@ define(["../../javascripts/app/common"],
             if (typeof response ==="object") {
                 // Clear the form inputs
                 $("[id^=venue]").val('');
+				$("[id*=Sel]").val('0');
+				$("[id*=SelActive]").val('Y');
                  event.data.self.venueListData = response;
                   console.log("adding")
                 // Update the table
@@ -140,6 +148,7 @@ define(["../../javascripts/app/common"],
             tableContent += '<td><a href="#" class="linkshowvenue" rel="' + this._id + '" title="Show Details">'
             + this.name + '</td>';
             tableContent += '<td>' + this.city + '</td>';
+            tableContent += '<td>' + this.active + '</td>';
             tableContent += '<td><a href="#" class="linkdeletevenue" data-url="/venues/deletevenue/" rel="' + this._id + '">delete</a></td>';
             tableContent += '</tr>';
         });
@@ -186,6 +195,10 @@ define(["../../javascripts/app/common"],
         $('#venueInfoSelType').val(thisObject.type);
 		$('#venueInfoExtra1').val(thisObject.extra1);
         $('#venueInfoExtra2').val(thisObject.extra2);
+		$('#venueInfoExtra3').val(thisObject.extra3);
+        $('#venueInfoExtra4').val(thisObject.extra4);
+		$('#venueInfoExtra5').val(thisObject.extra5);
+		$('#venueInfoSelActive').val(thisObject.active);
 
     }
 
