@@ -41,6 +41,15 @@ html
                     option(value="Pub") Pub
                     option(value="Night Club") Night Club
                     option(value="Resto Bar") Resto Bar
+                //br
+                &nbsp&nbsp
+                select#venueInfoSelActive
+                    option(value="0") Active
+                    option(value="Y") Yes
+                    option(value="N") No
+                br
+                strong Version#
+                input#venueInfoVersion(type='number',readonly='readonly')
                 br
                 strong Image:
                 input#venueInfoImage(type='text')
@@ -50,6 +59,20 @@ html
                 br
                 strong Long Description
                 textarea#venueInfoLongDesc
+                strong Extra1
+                textarea#venueInfoExtra1
+                br
+                strong Extra2
+                textarea#venueInfoExtra2
+                br
+                strong Extra3
+                textarea#venueInfoExtra3
+                br
+                strong Extra4
+                textarea#venueInfoExtra4
+                br
+                strong Extra5
+                textarea#venueInfoExtra5
                 br
                 button#edit Edit
         #venueList
@@ -57,6 +80,7 @@ html
                 thead
                     th Venue Name
                     th Location
+                    th Active
                     th Delete?
                 tbody
 
@@ -73,21 +97,42 @@ html
                 input#venueAddress(type='text', placeholder='Address')
                 input#venuePhone(type='tel', placeholder='Phone')
                 br
-                .textClass Short Description   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Detail Description
+                .textClass Short Description   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Detail Description
                 textarea#venueShortDesc
                 textarea#venueLongDesc
                 br
                 input#venueTimings(type='text', placeholder='Timings')
+                &nbsp&nbsp
                 select#venueSelCity
                     option(value="0") Select City
                     option(value="Gurgaon") Gurgaon
                     option(value="Noida") Noida
                     option(value="Delhi") Delhi
+                &nbsp&nbsp
                 select#venueSelType
                     option(value="0") Select Type
                     option(value="Pub") Pub
                     option(value="Night Club") Night Club
-                    option(value="Resto Bar") Resto Bar
+                    option(value="Resto Bar") Resto Bar          
+                br
+                label Active &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                select#venueSelActive
+                    option(value="Y") Yes
+                    option(value="N") No
+                &nbsp&nbsp
+                label Version# &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                input#venueVersion(type='text', readonly='readonly' value=1)
+                br
+                .textClass Extra1 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Extra2
+                textarea#venueExtraInfo1
+                textarea#venueExtraInfo2
+                br
+                .textClass Extra3 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Extra4
+                textarea#venueExtraInfo3
+                textarea#venueExtraInfo4
+                br
+                .textClass Extra5
+                textarea#venueExtraInfo5
                 br
 
                 button#btnAddVenue Add Venue
