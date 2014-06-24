@@ -30,7 +30,7 @@ define(["../../javascripts/app/common"],
                 }
                 console.log(nOffer);
 
-				
+
                 if(nOffer.header ==='' || nOffer.photoString ==='' || nOffer.type ==='0'
                     || nOffer.isFeatured ===''
                     || nOffer.startDate ==='' || nOffer.endDate ==='' || nOffer.timeInfo ==='0'||  nOffer.venue._id ==='0' ){
@@ -63,7 +63,7 @@ define(["../../javascripts/app/common"],
                 $.ajax({
                     type: 'PUT',
                     data: nOffer,
-                    url: '/offers/editoffer/111',
+                    url: '/admin/offer/editoffer/111',
                     dataType: 'JSON'
                 }).done(function( response ) {
                     alert('success');
@@ -100,7 +100,7 @@ define(["../../javascripts/app/common"],
                 $.ajax({
                     type: 'POST',
                     data: nOffer,
-                    url: '/offers/addoffer',
+                    url: '/admin/offer/addoffer',
                     dataType: 'JSON'
                 }).done(function( response ) {
                     alert('success');
@@ -121,7 +121,7 @@ define(["../../javascripts/app/common"],
         init:function(){
 
             var self = this;
-            $.getJSON( '/offers/offerlist', function( data ) {
+            $.getJSON( '/admin/offer/offerlist', function( data ) {
                 self.offerListData = data;
                 self.populateTable();
             });
@@ -152,7 +152,7 @@ define(["../../javascripts/app/common"],
             if(!this.initialised){
                 $( ".date" ).datepicker();
                 this.initialised = true;
-                $('#offerList table tbody').on('click', 'td a.linkdeleteoffer', {'url':'/offers/deleteoffer/','type':'offer'},common.deleteEntity);
+                $('#offerList table tbody').on('click', 'td a.linkdeleteoffer', {'url':'/admin/offer/deleteoffer/','type':'offer'},common.deleteEntity);
                 $('#btnAddOffer').on('click', {'self':this},this.addOffer);
                 $('#edit').on('click', {'self':this},this.editOffer);
                 $('#offerList table tbody').on('click', 'td a.linkshowoffer',{'self':this}, this.showInfo);

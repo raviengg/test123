@@ -1,0 +1,101 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/site-styles.css')
+        script(src='/javascripts/lib/angular/angular.js')
+        script(src='/javascripts/controller/controllers.js')
+    body
+    div.section-header-bg
+        div.container
+            nav.navbar.navbar-inverse.yossa-navi(role='navigation')
+                div.navbar-header
+                    button.navbar-toggle(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1')
+                        span.sr-only Toggle navigation
+                        span.icon-bar.bg-offers
+                        span.icon-bar.bg-events
+                        span.icon-bar.bg-venues
+
+                    a.navbar-brand(href='/barcelon')
+                        img(src='/img/elements/yossalogo.png')
+
+                    div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+                        ul.nav.navbar-nav
+                            li.dropdown
+                                a.dropdown-toggle(href='#'  data-toggle='dropdown') Barcelona
+                                    b.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/gurgaon') Gurgaon
+                            li
+                                a(href='/Delhi') Delhi
+                        ul.nav.navbar-nav.navbar-right
+                            li.section-link
+                                a.color-offers(href='/barcelona/offers') Offers
+                            li.section-link
+                                a.color-events(href='/barcelona/events') Events
+                            li.section-link
+                                a.color-venues(href='/barcelona/venues') Venues
+        div.section.section-header
+            div.container
+            div.section-header-app
+                div.row
+                    div.col-xs-12.col-sm-8
+                        div.row
+                            div.col-xs-10.col-xs-offset-1.col-sm-11.col-sm-offset-1
+                                img.img-responsive(src='/img/header/download_for_free.png')
+                        div.row
+                            div.col-xs-4.col-xs-offset-2.col-sm-4.col-sm-offset-4.col-md-3.col-md-offset-6
+                                a (href='https://itunes.apple.com/fi/app/yossa.fi/id579937769?mt=8')
+                                    img(src='/img/elements/appstore_logo.png')
+                            div.col-xs-4.col-sm-4.col-md-3
+                                a(href='https://play.google.com/store/apps/details?#com.awimbawe.yossa')
+                                    img(src='/img/elements/googleplay_logo.png')
+
+    .section.section-offers#offers(ng-controller='offercntrl')
+        .container
+            .section-title.rounded
+                h2 Offers in Mozito app
+
+            ul.yossa-cards.row
+                li.col-xs-12.col-sm-6.col-md-3
+                    .yossa-card.yossa-card-offer.rounded
+                        .yossa-card-header
+                            .row
+                                .col-xs-3.col-sm-3.col-md-4
+                                    .yossa-card-icon.yossa-card-icon-offer.rounded
+                                    img.img-responsive(src='https://yossa.fi/images/icons2/star.png')
+                                .col-xs-9.col-sm-9.col-md-8.heading
+                                    h4 Cocteles -25%
+                        a(href='/venues/1661')
+                            .yossa-card-image(style='background-image: url(https://yossa.fi/media/images/ios/539095374478ddd12414264e-ios.jpg);')
+                        .yossa-card-footer
+                            .row
+                                .col-xs-10
+                                    a.yossa-card-footer-link(href='/venues/1661')
+                                        | Bobby´s Free
+                                .col-xs-2
+                                    .venue-status.venue-status-closed
+    #venues.section.section-venues
+        .container
+            .section-title.rounded
+                h2 Venues
+            ul.yossa-cards.row
+                li.col-xs-12.col-sm-6.col-md-3
+                    .yossa-card.yossa-card-venue.rounded
+                        .yossa-card-header
+                            .row
+                                .col-xs-3.col-sm-3.col-md-4
+                                    .yossa-card-icon.yossa-card-icon-venue.rounded
+                                        img.img-responsive(src='https://yossa.fi/images/icons2/star.png')
+                                .col-xs-9.col-sm-9.col-md-8.heading
+                                    h4 GIPSY BAR
+                            a(href='/venues/100017')
+                                .yossa-card-image(style='background-image: url(https://yossa.fi/media/images/ios/539095374478ddd12414264e-ios.jpg);')
+                        .yossa-card-footer
+                            .row
+                                .col-xs-10
+                                    a.yossa-card-footer-link(href='/venues/100017')
+                                        | Calle Ample 54, Barcelona
+                                    .col-xs-2
+                                        .venue-status.venue-status-closed

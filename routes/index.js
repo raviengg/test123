@@ -1,13 +1,20 @@
 module.exports = function(app,app_secure){
     var hash = require('./pass.js').hash;
     var redirect_secure = function(req, res, next){
-
         if(!req.secure){
-               res.redirect('https://' + req.header('Host') + req.url)}
-               else{
-                next();
-               }
+            res.redirect('https://' + req.header('Host') + req.url)}
+        else{
+            next();
+        }
     }
+
+    app.get('/',function(req,res){
+        if(req.secure){
+            res.redirect('/login');
+        }else{
+            res.render('site/index.jade');
+        }
+    });
 
 
     app.get('/admin-user', restrict,function(req, res) {
@@ -91,34 +98,33 @@ module.exports = function(app,app_secure){
       users.tom.hash = hash;
     });
 
-
 // Authenticate using our plain-object database of doom!
 
-function authenticate(name, pass, fn) {
-  if (!module.parent) console.log('authenticating %s:%s', name, pass);
-  var user = users[name];
-  // query the db for the given username
-  if (!user) return fn(new Error('cannot find user'));
-  // apply the same algorithm to the POSTed password, applying
-  // the hash against the pass / salt, if there is a match we
-  // found the user
-  hash(pass, user.salt, function(err, hash){
-    if (err) return fn(err);
-    if (hash == user.hash) return fn(null, user);
-    fn(new Error('invalid password'));
-  });
-}
+    function authenticate(name, pass, fn) {
+      if (!module.parent) console.log('authenticating %s:%s', name, pass);
+      var user = users[name];
+      // query the db for the given username
+      if (!user) return fn(new Error('cannot find user'));
+      // apply the same algorithm to the POSTed password, applying
+      // the hash against the pass / salt, if there is a match we
+      // found the user
+      hash(pass, user.salt, function(err, hash){
+        if (err) return fn(err);
+        if (hash == user.hash) return fn(null, user);
+        fn(new Error('invalid password'));
+      });
+    }
 
-function restrict(req, res, next) {
-  if (req.session.user) {
-     console.log('pass')
-    next();
-  } else {
-      console.log('fail')
-    req.session.error = 'Access denied!';
-    res.redirect('/login');
-  }
-}
+    function restrict(req, res, next) {
+      if (req.session.user) {
+         console.log('pass')
+        next();
+      } else {
+          console.log('fail')
+        req.session.error = 'Access denied!';
+        res.redirect('/login');
+      }
+    }
 
 }
 

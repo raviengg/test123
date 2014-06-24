@@ -67,7 +67,7 @@ define(["../../javascripts/app/common"],
         $.ajax({
             type: 'PUT',
             data: nVenue,
-            url: '/venues/edit/1231',
+            url: '/admin/venue/edit/1231',
             dataType: 'JSON'
         }).done(function( response ) {
 
@@ -103,7 +103,7 @@ define(["../../javascripts/app/common"],
         $.ajax({
             type: 'POST',
             data: nVenue,
-            url: '/venues/add',
+            url: '/admin/venue/add',
             dataType: 'JSON'
         }).done(function( response ) {
 
@@ -133,7 +133,7 @@ define(["../../javascripts/app/common"],
         venueListData:[],
         init:function(){
             var self = this;
-            $.getJSON( '/venues/list', function( data ) {
+            $.getJSON( '/admin/venue/list', function( data ) {
                 self.venueListData = data;
                 self.populateTable();
             });
@@ -152,7 +152,7 @@ define(["../../javascripts/app/common"],
             + this.name + '</td>';
             tableContent += '<td>' + this.city + '</td>';
             tableContent += '<td>' + this.active + '</td>';
-            tableContent += '<td><a href="#" class="linkdeletevenue" data-url="/venues/deletevenue/" rel="' + this._id + '">delete</a></td>';
+            tableContent += '<td><a href="#" class="linkdeletevenue" data-url="/admin/venue/deletevenue/" rel="' + this._id + '">delete</a></td>';
             tableContent += '</tr>';
         });
 
@@ -161,7 +161,7 @@ define(["../../javascripts/app/common"],
         if(!this.initialised){
             $('#btnAddVenue').on('click', {'self':this},this.addVenue);
             $('#edit').on('click', {'self':this},this.editVenue);
-            $('#venueList table tbody').on('click', 'td a.linkdeletevenue', {'url':'/venues/delete/','type':'venue'},common.deleteEntity);
+            $('#venueList table tbody').on('click', 'td a.linkdeletevenue', {'url':'/admin/venue/delete/','type':'venue'},common.deleteEntity);
             $('#venueList table tbody').on('click', 'td a.linkshowvenue',{'self':this}, this.showInfo);
             this.initialised = true;
         }
