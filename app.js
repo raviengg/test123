@@ -1,31 +1,31 @@
 var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-// Database
-var mongo = require('mongoskin');
-var db ;//= mongo.db("mongodb://localhost:27017/nodetest2", {native_parser:true});
-var cors = require('cors');
+    path = require('path'),
+    favicon = require('static-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    fs = require("fs"),
+    session = require('express-session'),
+    mongo = require('mongoskin');
+    app = express(),
+    options = {
+      key: fs.readFileSync('cert/privatekey.pem'),
+      cert: fs.readFileSync('cert/certificate.pem')
+    },
+    uuid = require('node-uuid');
+var db;
+
 
 process.argv.forEach(function (val, index, array) {
   console.log(index + ': ' + val);
   if(index == 2 && val == "local"){
   db = mongo.db("mongodb://localhost:27017/partyy", {native_parser:true});
   }else{
- // db = mongo.db("mongodb://gir.sharma@gmail.com:india123@oceanic.mongohq.com:10019/app25479731",{native_parser:true});
-  db = mongo.db("mongodb://girish:india123@oceanic.mongohq.com:10019/app25479731",{safe: true, auto_reconnect: true});
+   db = mongo.db("mongodb://girish:india123@oceanic.mongohq.com:10019/app25479731",{safe: true, auto_reconnect: true});
   }
 });
 
-var routes = require('./routes/index'),
-	users = require('./routes/users'),
-	offers = require('./routes/offers'),
-	venues = require('./routes/venues'),
-	events = require('./routes/events');
 
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,20 +37,63 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+app.use(session({ secret: 'shhhh, very secret' }));
 // Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
     next();
 });
+// Session-persisted message middleware
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/venues', venues);
-app.use('/offers', offers);
-app.use('/events',events);
+app.use(function(req, res, next){
+  var err = req.session.error;
+  var msg = req.session.success;
+  delete req.session.error;
+  delete req.session.success;
+  res.locals.message = '';
+  if (err) res.locals.message = '<p class="msg error">' + err + '</p>';
+  if (msg) res.locals.message = '<p class="msg success">' + msg + '</p>';
+  next();
+});
+/*
+var https = process.env.HTTPS || 1;
+if(https > 0) {*/
+   //    app.set('port', process.env.PORT || 3000);
+   // var app_secure = require('https').createServer(options, app).listen(process.env.PORT || 4000);
+
+/*} else {
+    var app_secure = module.exports = express.createServer();
+}
+
+*/
+var app_secure = require('https');
+app_secure.createServer(options, app).listen(process.env.PORT_SECURE || 443);
 
 
+var index = require('./routes/index')(app,app_secure),
+	venues = require('./routes/venues')(app,app_secure,uuid),
+	//users = require('./routes/users')(app,app_secure,uuid),
+	offers = require('./routes/offers')(app,app_secure,uuid),
+	events = require('./routes/events')(app,app_secure,uuid);
+/*
+
+app.get('/admin', function(req, res) {
+    res.redirect('https://' + req.header('Host') + req.url);
+});
+
+app_secure.get('/admin', function(req, res) {
+    res.render('admin', { });
+});
+
+
+
+app.use('/', index);
+app_secure.use('/users', users);
+app_secure.use('/venues', venues);
+app_secure.use('/offers', offers);
+app_secure.use('/events',events);
+
+*/
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -58,9 +101,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/// error handlers
 
-// development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
@@ -83,4 +124,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+module.exports= app;

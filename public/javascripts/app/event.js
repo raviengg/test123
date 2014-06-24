@@ -49,7 +49,7 @@ define(["../../javascripts/app/common"],
                 $.ajax({
                     type: 'PUT',
                     data: nEvent,
-                    url: '/events/edit/111',
+                    url: '/admin/event/edit/111',
                     dataType: 'JSON'
                 }).done(function( response ) {
                     alert('success');
@@ -81,7 +81,7 @@ define(["../../javascripts/app/common"],
                 $.ajax({
                     type: 'POST',
                     data: nEvent,
-                    url: '/events/add',
+                    url: '/admin/event/add',
                     dataType: 'JSON'
                 }).done(function( response ) {
                     alert('success');
@@ -102,7 +102,7 @@ define(["../../javascripts/app/common"],
         init:function(){
 
             var self = this;
-            $.getJSON( '/events/list', function( data ) {
+            $.getJSON( '/admin/event/list', function( data ) {
                 self.eventListData = data;
                 self.populateTable();
             });
@@ -133,7 +133,7 @@ define(["../../javascripts/app/common"],
             if(!this.initialised){
                 $( ".date" ).datepicker();
                 this.initialised = true;
-                $('#eventList table tbody').on('click', 'td a.linkdeleteevent', {'url':'/events/delete/','type':'event'},common.deleteEntity);
+                $('#eventList table tbody').on('click', 'td a.linkdeleteevent', {'url':'/admin/event/delete/','type':'event'},common.deleteEntity);
                 $('#btnAddEvent').on('click', {'self':this},this.addEvent);
                 $('#editEvent').on('click', {'self':this},this.editEvent);
                 $('#eventList table tbody').on('click', 'td a.linkshowevent',{'self':this}, this.showInfo);

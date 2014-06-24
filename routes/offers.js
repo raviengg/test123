@@ -1,7 +1,5 @@
-var express = require('express');
-var router = express.Router();
-var uuid = require('node-uuid');
-router.get('/', function(req, res) {
+module.exports = function(app,app_secure,uuid){
+app.get('/admin/offer', function(req, res) {
     var db = req.db;
     db.collection('offers').find().toArray(function (err, items) {
         res.json(items);
@@ -13,7 +11,7 @@ router.get('/', function(req, res) {
 /*
  * GET offerlist.
  */
-router.get('/offerlist', function(req, res) {
+app.get('/admin/offer/offerlist', function(req, res) {
     var db = req.db;
     db.collection('offers').find().toArray(function (err, items) {
         res.json(items);
@@ -24,7 +22,7 @@ router.get('/offerlist', function(req, res) {
 /*
  * PUT to editdoffer.
  */
-router.put('/editoffer/:id', function(req, res) {
+app.put('/admin/offer/editoffer/:id', function(req, res) {
     var db = req.db;
     var nOffer = req.body;
 
@@ -43,7 +41,7 @@ router.put('/editoffer/:id', function(req, res) {
 /*
  * POST to addoffer.
  */
-router.post('/addoffer', function(req, res) {
+app.post('/admin/offer/addoffer', function(req, res) {
     var db = req.db;
     var nOffer = req.body;
     nOffer._id =  uuid.v4().replace(/-/g, '');
@@ -63,12 +61,11 @@ router.post('/addoffer', function(req, res) {
 /*
  * DELETE to deleteoffer.
  */
-router.delete('/deleteoffer/:id', function(req, res) {
+app.delete('/admin/offer/deleteoffer/:id', function(req, res) {
     var db = req.db;
     var offerToDelete = req.params.id;
     db.collection('offers').removeById(offerToDelete, function(err, result) {
         res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
     });
 });
-
-module.exports = router;
+}
