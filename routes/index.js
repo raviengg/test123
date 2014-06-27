@@ -9,11 +9,21 @@ module.exports = function(app,app_secure,hasher){
 
     var redirect_secure = function(req, res, next){
     console.log('page is ' + req.secure)
-        if(!req.secure){
-            res.redirect('https://' + req.header('Host') + req.url)}
-        else{
-            next();
+
+        if(app.server == 'local'){
+            if(req.headers['x-forwarded-proto']!='https'){
+                 res.redirect('https://' + req.header('Host') + req.url);
+            }else{
+                next();
+            }
+        }else{
+            if(!req.secure){
+                res.redirect('https://' + req.header('Host') + req.url);}
+            else{
+                next();
+            }
         }
+
     }
 
     app.get('/',function(req,res){

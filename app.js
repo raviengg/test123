@@ -19,12 +19,14 @@ var express = require('express');
     console.log(hasher.md5Hash('password'))
 
 process.argv.forEach(function (val, index, array) {
-  console.log(index + ': ' + val);
-  if(index == 2 && val == "local"){
-  db = mongo.db("mongodb://localhost:27017/partyy", {native_parser:true});
-  }else{
-   db = mongo.db("mongodb://girish:india123@oceanic.mongohq.com:10019/app25479731",{safe: true, auto_reconnect: true});
-  }
+    console.log(index + ': ' + val);
+    if(index == 2 && val == "local"){
+        db = mongo.db("mongodb://localhost:27017/partyy", {native_parser:true});
+        app.set('server','local');
+    }else{
+        db = mongo.db("mongodb://girish:india123@oceanic.mongohq.com:10019/app25479731",{safe: true, auto_reconnect: true});
+        app.set('server','heroku');
+    }
 });
 
 
@@ -68,7 +70,12 @@ if(https > 0) {*/
 
 */
 var app_secure = require('https');
-app_secure.createServer(options, app).listen(process.env.PORT_SECURE || 3001/*443*/);
+if(app.get('server') === 'local' ){
+    app_secure.createServer(options, app).listen(process.env.PORT_SECURE || 443);
+}else{
+    app_secure.createServer(options, app).listen(process.env.PORT_SECURE || 3001);
+}
+
 
 
 var index = require('./routes/index')(app,app_secure,hasher),
@@ -95,6 +102,13 @@ if (app.get('env') === 'development') {
         });
     });
 }
+
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect('https://' + req.header('Host') + req.url);
+  else
+    next() /* Continue to other routes if we're not redirecting */
+})
 
 // production error handler
 // no stacktraces leaked to user
