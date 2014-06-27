@@ -8,6 +8,7 @@ module.exports = function(app,app_secure,hasher){
 
 
     var redirect_secure = function(req, res, next){
+    console.log('page is ' + req.secure)
         if(!req.secure){
             res.redirect('https://' + req.header('Host') + req.url)}
         else{
