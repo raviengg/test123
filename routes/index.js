@@ -11,7 +11,7 @@ module.exports = function(app,app_secure,hasher){
     console.log('page is ' + req.secure)
 
         if(app.server == 'local'){
-            if(req.headers['x-forwarded-proto']!='https'){
+            if(req.headers['x-forwarded-proto']=='https'){
                  res.redirect('https://' + req.header('Host') + req.url);
             }else{
                 next();
