@@ -12,9 +12,11 @@ var express = require('express');
       key: fs.readFileSync('cert/privatekey.pem'),
       cert: fs.readFileSync('cert/certificate.pem')
     },
-    uuid = require('node-uuid');
-var db;
-
+    uuid = require('node-uuid'),
+    pass =  require('./routes/pass'),
+    hasher  = new pass();
+    var db;
+    console.log(hasher.md5Hash('password'))
 
 process.argv.forEach(function (val, index, array) {
   console.log(index + ': ' + val);
@@ -24,7 +26,6 @@ process.argv.forEach(function (val, index, array) {
    db = mongo.db("mongodb://girish:india123@oceanic.mongohq.com:10019/app25479731",{safe: true, auto_reconnect: true});
   }
 });
-
 
 
 // view engine setup
@@ -70,30 +71,12 @@ var app_secure = require('https');
 app_secure.createServer(options, app).listen(process.env.PORT_SECURE || 443);
 
 
-var index = require('./routes/index')(app,app_secure),
+var index = require('./routes/index')(app,app_secure,hasher),
 	venues = require('./routes/venues')(app,app_secure,uuid),
-	//users = require('./routes/users')(app,app_secure,uuid),
+	users = require('./routes/users')(app,app_secure,uuid,hasher),
 	offers = require('./routes/offers')(app,app_secure,uuid),
 	events = require('./routes/events')(app,app_secure,uuid);
-/*
 
-app.get('/admin', function(req, res) {
-    res.redirect('https://' + req.header('Host') + req.url);
-});
-
-app_secure.get('/admin', function(req, res) {
-    res.render('admin', { });
-});
-
-
-
-app.use('/', index);
-app_secure.use('/users', users);
-app_secure.use('/venues', venues);
-app_secure.use('/offers', offers);
-app_secure.use('/events',events);
-
-*/
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

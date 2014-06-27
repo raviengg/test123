@@ -10,20 +10,6 @@ module.exports = function(app,app_secure,uuid){
         });
     });
 
-    app.get('/admin/venue/totaldata', function(req, res) {
-        var db = req.db;
-        var lat = parseFloat(req.get('lat'));
-        var lon = parseFloat(req.get('lon'));
-        db.collection('venue').find({'loc':{'$near':{'$geometry':{'type':'Point','coordinates':[lon,lat]}}}}).toArray(function (err, venueList) {
-           db.collection('offers').find().toArray(function (err, offerList) {
-                  db.collection('events').find().toArray(function (err, eventList) {
-                  res.json({'venue':venueList,'offer':offerList,'event':eventList});
-            });
-
-            });
-        });
-    });
-
     /*
      * POST to addvenue.
      */
@@ -50,7 +36,6 @@ module.exports = function(app,app_secure,uuid){
 
         });
     });
-
 
     app.put('/admin/venue/edit/:id', function(req, res) {
         var db = req.db;

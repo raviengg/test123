@@ -1,5 +1,12 @@
-module.exports = function(app,app_secure){
-    var hash = require('./pass.js').hash;
+module.exports = function(app,app_secure,hasher){
+ hasher.hash('foobar1', function(err, salt, hash){
+      if (err) throw err;
+      // store the salt & hash in the "db"
+      users.tom.salt = salt;
+      users.tom.hash = hash;
+    });
+
+
     var redirect_secure = function(req, res, next){
         if(!req.secure){
             res.redirect('https://' + req.header('Host') + req.url)}
@@ -91,12 +98,6 @@ module.exports = function(app,app_secure){
     // when you create a user, generate a salt
     // and hash the password ('foobar' is the pass here)
 
-    hash('foobar1', function(err, salt, hash){
-      if (err) throw err;
-      // store the salt & hash in the "db"
-      users.tom.salt = salt;
-      users.tom.hash = hash;
-    });
 
 // Authenticate using our plain-object database of doom!
 
@@ -108,7 +109,7 @@ module.exports = function(app,app_secure){
       // apply the same algorithm to the POSTed password, applying
       // the hash against the pass / salt, if there is a match we
       // found the user
-      hash(pass, user.salt, function(err, hash){
+      hasher.hash(pass, user.salt, function(err, hash){
         if (err) return fn(err);
         if (hash == user.hash) return fn(null, user);
         fn(new Error('invalid password'));
@@ -116,6 +117,7 @@ module.exports = function(app,app_secure){
     }
 
     function restrict(req, res, next) {
+    console.log(req.session.user)
       if (req.session.user) {
          console.log('pass')
         next();
@@ -127,44 +129,3 @@ module.exports = function(app,app_secure){
     }
 
 }
-
-/*
-var express = require('express');
-var router = express.Router();
-
-router.get('/', function(req, res) {
-  res.render('welcome-page', { title: 'Partyy' });
-});
-
-router.get('/admin-user', function(req, res) {
-  res.render('admin-user', { title: 'user' });
-});
-
-router.get('/login', function(req, res) {
-  res.render('login', { title: 'Sign In' });
-});
-
-router.get('/admin-venue', function(req, res) {
-  res.render('admin-venue', { title: 'Venues List' });
-});
-
-
-// get offer admin page
-router.get('/admin-offer', function(req, res) {
-    var db = req.db;
-    db.collection('venue').find().toArray(function (err, venue) {
-          res.render('admin-offer', { title: 'Offers' ,'venue':venue});
-    });
-});
-
-
-// get offer admin page
-router.get('/admin-event', function(req, res) {
-    var db = req.db;
-    db.collection('venue').find().toArray(function (err, venue) {
-          res.render('admin-event', { title: 'Events' ,'venue':venue});
-    });
-});
-
-module.exports = router;
-*/
