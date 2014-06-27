@@ -10,7 +10,7 @@ module.exports = function(app,app_secure,hasher){
     var redirect_secure = function(req, res, next){
     console.log('page is ' + req.secure)
 
-        if(app.server == 'local'){
+        if(app.get('server') == 'heroku'){
             if(req.headers['x-forwarded-proto']=='https'){
                  res.redirect('https://' + req.header('Host') + req.url);
             }else{
