@@ -44,8 +44,8 @@ module.exports = function(app,app_secure,uuid,hasher){
         var getSugar = hasher.md5Hash("vagabond123"+user.imei+"gurgaon");
         console.log(user, " our sugar " + getSugar);
         if(user.sugar == getSugar){
-            var lonC= parseInt(user.lat);
-            var latC = parseInt(user.lon);
+            var lon= parseFloat(user.lon);
+            var lat = parseFloat(user.lat);
             delete user['lat'];
             delete user['lon'];
             user._id =  uuid.v4().replace(/-/g, '');
@@ -56,14 +56,15 @@ module.exports = function(app,app_secure,uuid,hasher){
                         db.collection('events').find().toArray(function (err, eventList) {
                             //res.json({'venue':venueList,'offer':offerList,'event':eventList});
                             var obj = {};
-                            var lat = parseFloat(req.get('lat'));
-                            var lon = parseFloat(req.get('lon'));
                             if (lon==0 || lat == 0){
                             }else{
                                 obj = {'loc':{'$near':{'$geometry':{'type':'Point','coordinates':[lon,lat]}}}};
                             }
+
                             db.collection('venue').find(obj).toArray(function (err, venueList) {
-                                    res.json({'user_id':userObj._id,'venue':venueList,'offer':offerList,'event':eventList});
+                                    var o = {'user_id':userObj._id,'venue':venueList,'offer':offerList,'event':eventList};
+                                    console.log(o)
+                                    res.json(o);
                             });
                         });
                     });
