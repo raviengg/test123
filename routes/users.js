@@ -62,7 +62,7 @@ module.exports = function(app,app_secure,uuid,hasher){
                             }
 
                             db.collection('venue').find(obj).toArray(function (err, venueList) {
-                                    var o = {'user_id':userObj._id,'venue':venueList,'offer':offerList,'event':eventList};
+                                    var o = {'user_id':userObj[0]._id,'venue':venueList,'offer':offerList,'event':eventList};
 
                                     res.json(o);
                             });
