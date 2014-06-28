@@ -63,7 +63,7 @@ module.exports = function(app,app_secure,uuid,hasher){
 
                             db.collection('venue').find(obj).toArray(function (err, venueList) {
                                     var o = {'user_id':userObj._id,'venue':venueList,'offer':offerList,'event':eventList};
-                                    console.log(o)
+
                                     res.json(o);
                             });
                         });
@@ -84,10 +84,10 @@ module.exports = function(app,app_secure,uuid,hasher){
         var db = req.db;
         var nUser =  req.body;
         nUser._id =  uuid.v4().replace(/-/g, '');
-        db.collection('userlist').insert(nUser, function(err, result){
-            console.log(err);
+        db.collection('userlist').insert(nUser, function(err, k){
+            console.log(k[0]._id);
             res.send(
-                (err === null) ? { msg: '' } : { msg: err }
+                (err === null) ? k[0]  : { msg: err }
             );
         });
     });
