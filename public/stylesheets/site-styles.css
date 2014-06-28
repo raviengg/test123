@@ -4997,45 +4997,45 @@ td.visible-print {
   th.hidden-print,
   td.hidden-print {
     display: none !important; } }
-.bg-offers, .yossa-navi .navbar-toggle .bg-offers {
+.bg-offers, .mozitos-navi .navbar-toggle .bg-offers {
   background: #cc6600; }
 
-.bg-events, .yossa-navi .navbar-toggle .bg-events {
+.bg-events, .mozitos-navi .navbar-toggle .bg-events {
   background: #669900; }
 
-.bg-venues, .yossa-navi .navbar-toggle .bg-venues {
+.bg-venues, .mozitos-navi .navbar-toggle .bg-venues {
   background: #33ccff; }
 
-.color-offers, .yossa-navi .navbar-nav > li .color-offers {
+.color-offers, .mozitos-navi .navbar-nav > li .color-offers {
   color: #cc6600; }
 
-.color-events, .yossa-navi .navbar-nav > li .color-events {
+.color-events, .mozitos-navi .navbar-nav > li .color-events {
   color: #669900; }
 
-.color-venues, .yossa-navi .navbar-nav > li .color-venues {
+.color-venues, .mozitos-navi .navbar-nav > li .color-venues {
   color: #33ccff; }
 
-.yossa-navi {
+.mozitos-navi {
   border: none;
   margin-bottom: 0;
   border-radius: 0;
   font-size: 18px; }
   @media (min-width: 720px) {
-    .yossa-navi {
+    .mozitos-navi {
       max-height: 90px; } }
-  .yossa-navi .navbar-brand {
+  .mozitos-navi .navbar-brand {
     color: #5ff;
     padding: 5px 0 0 0;
     margin-left: 5px; }
     @media (min-width: 720px) {
-      .yossa-navi .navbar-brand {
+      .mozitos-navi .navbar-brand {
         height: 86px; }
-        .yossa-navi .navbar-brand img {
+        .mozitos-navi .navbar-brand img {
           display: block;
           height: 100%; } }
-  .yossa-navi .navbar-collapse {
+  .mozitos-navi .navbar-collapse {
     padding-top: 20px; }
-  .yossa-navi .section-link {
+  .mozitos-navi .section-link {
     text-transform: uppercase; }
 
 body {
@@ -5093,38 +5093,38 @@ body {
 .section-venues .section-title {
   background: #33ccff; }
 
-.yossa-cards {
+.mozitos-cards {
   list-style: none;
   padding: 0; }
 
-.yossa-card {
+.mozitos-card {
   background: #555;
   overflow: hidden;
   margin-bottom: 10px; }
   @media (min-width: 1010px) {
-    .yossa-card {
+    .mozitos-card {
       height: 290px; } }
-  .yossa-card .yossa-card-header {
+  .mozitos-card .mozitos-card-header {
     background: #fff;
     color: black;
     overflow: hidden;
     max-height: 95px; }
     @media (min-width: 720px) {
-      .yossa-card .yossa-card-header {
+      .mozitos-card .mozitos-card-header {
         max-height: 64px; } }
     @media (min-width: 1010px) {
-      .yossa-card .yossa-card-header {
+      .mozitos-card .mozitos-card-header {
         max-height: 51px; } }
-    .yossa-card .yossa-card-header .heading {
+    .mozitos-card .mozitos-card-header .heading {
       margin-left: -25px; }
-      .yossa-card .yossa-card-header .heading h4 {
+      .mozitos-card .mozitos-card-header .heading h4 {
         margin: 5px 0;
         font-weight: 200;
         line-height: 1.25; }
-  .yossa-card .yossa-card-icon {
+  .mozitos-card .mozitos-card-icon {
     background-color: #000;
     margin: 4px; }
-  .yossa-card .yossa-card-image {
+  .mozitos-card .mozitos-card-image {
     background: #555 50% 50%;
     background-size: cover;
     width: 100%;
@@ -5132,40 +5132,40 @@ body {
     height: 400px;
     overflow: hidden; }
     @media (min-width: 720px) {
-      .yossa-card .yossa-card-image {
+      .mozitos-card .mozitos-card-image {
         height: 345px; } }
     @media (min-width: 1010px) {
-      .yossa-card .yossa-card-image {
+      .mozitos-card .mozitos-card-image {
         height: 213px; } }
-  .yossa-card .yossa-card-footer {
+  .mozitos-card .mozitos-card-footer {
     background: #000;
     color: white;
     font-size: 90%;
     height: 28px;
     overflow: hidden; }
-    .yossa-card .yossa-card-footer a, .yossa-card .yossa-card-footer a:visited {
+    .mozitos-card .mozitos-card-footer a, .mozitos-card .mozitos-card-footer a:visited {
       color: white; }
-    .yossa-card .yossa-card-footer .yossa-card-footer-link {
+    .mozitos-card .mozitos-card-footer .mozitos-card-footer-link {
       display: blocK;
       margin: 7px; }
-    .yossa-card .yossa-card-footer .venue-status {
+    .mozitos-card .mozitos-card-footer .venue-status {
       float: right;
       background: transparent;
       width: 10px;
       height: 10px;
       border-radius: 5px;
       margin: 8px 5px 0; }
-    .yossa-card .yossa-card-footer .venue-status-open {
+    .mozitos-card .mozitos-card-footer .venue-status-open {
       background-color: green; }
-    .yossa-card .yossa-card-footer .venue-status-closed {
+    .mozitos-card .mozitos-card-footer .venue-status-closed {
       background-color: red; }
-  .yossa-card .yossa-card-icon-offer {
+  .mozitos-card .mozitos-card-icon-offer {
     background-color: #cc6600; }
-  .yossa-card .yossa-card-icon-event {
+  .mozitos-card .mozitos-card-icon-event {
     background-color: #669900; }
-  .yossa-card .yossa-card-icon-venue {
+  .mozitos-card .mozitos-card-icon-venue {
     background-color: #33ccff; }
-  .yossa-card h4 {
+  .mozitos-card h4 {
     font-size: 16px; }
 
 .block-header {
