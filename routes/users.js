@@ -51,7 +51,25 @@ module.exports = function(app,app_secure,uuid,hasher){
             user._id =  uuid.v4().replace(/-/g, '');
             db.collection('userlist').insert(user, function(err, result){
                 res.send(
-                    (err === null) ? result  : { msg: err }
+                    //(err === null) ? result  : { msg: err }
+					if(err === null){
+					
+						db.collection('offers').find().toArray(function (err, offerList) {
+							db.collection('events').find().toArray(function (err, eventList) {
+								//res.json({'venue':venueList,'offer':offerList,'event':eventList});
+								var obj = {};
+								var lat = parseFloat(req.get('lat'));
+								var lon = parseFloat(req.get('lon'));
+								if (lon==0 || lat == 0){
+								}else{
+									obj = {'loc':{'$near':{'$geometry':{'type':'Point','coordinates':[lon,lat]}}}};
+								}
+								db.collection('venue').find(obj).toArray(function (err, venueList) {
+										res.json({'venue':venueList,'offer':offerList,'event':eventList});
+								});
+							});
+						});
+					}
                 );
             });
         }else{
