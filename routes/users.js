@@ -41,7 +41,7 @@ module.exports = function(app,app_secure,uuid,hasher){
     app.post('/admin/user/add', function(req, res) {
         var db = req.db;
         var user = req.body;
-        var getSugar = hasher.md5Hash("vagabond123"+user.name+"gurgaon");
+        var getSugar = hasher.md5Hash("vagabond123"+user.imei+"gurgaon");
         console.log(user, " our sugar " + getSugar);
         if(user.sugar == getSugar){
             var lonC= parseInt(user.lat);
@@ -49,28 +49,27 @@ module.exports = function(app,app_secure,uuid,hasher){
             delete user['lat'];
             delete user['lon'];
             user._id =  uuid.v4().replace(/-/g, '');
-            db.collection('userlist').insert(user, function(err, result){
-                res.send(
+            db.collection('userlist').insert(user, function(err, userObj){
                     //(err === null) ? result  : { msg: err }
-					if(err === null){
-					
-						db.collection('offers').find().toArray(function (err, offerList) {
-							db.collection('events').find().toArray(function (err, eventList) {
-								//res.json({'venue':venueList,'offer':offerList,'event':eventList});
-								var obj = {};
-								var lat = parseFloat(req.get('lat'));
-								var lon = parseFloat(req.get('lon'));
-								if (lon==0 || lat == 0){
-								}else{
-									obj = {'loc':{'$near':{'$geometry':{'type':'Point','coordinates':[lon,lat]}}}};
-								}
-								db.collection('venue').find(obj).toArray(function (err, venueList) {
-										res.json({'venue':venueList,'offer':offerList,'event':eventList});
-								});
-							});
-						});
-					}
-                );
+                if(err === null){
+                    db.collection('offers').find().toArray(function (err, offerList) {
+                        db.collection('events').find().toArray(function (err, eventList) {
+                            //res.json({'venue':venueList,'offer':offerList,'event':eventList});
+                            var obj = {};
+                            var lat = parseFloat(req.get('lat'));
+                            var lon = parseFloat(req.get('lon'));
+                            if (lon==0 || lat == 0){
+                            }else{
+                                obj = {'loc':{'$near':{'$geometry':{'type':'Point','coordinates':[lon,lat]}}}};
+                            }
+                            db.collection('venue').find(obj).toArray(function (err, venueList) {
+                                    res.json({'user_id':userObj._id,'venue':venueList,'offer':offerList,'event':eventList});
+                            });
+                        });
+                    });
+                }else{
+                    res.send(err);
+                }
             });
         }else{
             res.send(400,"You don't have access to the server");
