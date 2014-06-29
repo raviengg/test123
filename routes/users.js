@@ -7,7 +7,7 @@ module.exports = function(app,app_secure,uuid,hasher){
     });
 
 
-    app.get('/admin/user/totaldata/:id', function(req, res) {
+    app.get('/admin/user/totaldata', function(req, res) {
         var db = req.db;
         var _id = req.get('_id');
 
