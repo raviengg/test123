@@ -33,7 +33,7 @@ module.exports = function(app,app_secure,uuid){
     app.put('/admin/event/edit/:id', function(req, res) {
         var db = req.db;
         var nevent = req.body;
-        db.collection('venue').findOne({"_id":nOffer.venue._id},function(err,venue){
+        db.collection('venue').findOne({"_id":nevent.venue._id},function(err,venue){
             if(err === null ){
                 nevent.city = venue.city;
                 db.collection('events').update({'_id':nevent._id},nevent,{'safe':true} ,function(err, result){

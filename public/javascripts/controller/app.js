@@ -10,8 +10,7 @@ angular.module('Mojitoapp.services', [])
     }
     mojitoAPI.getOffers = function(city) {
       return $http({
-        url: '/admin/offer/list/'+city,
-        city:city
+        url: '/admin/offer/list/'+city
       });
     }
     mojitoAPI.getEvents = function(city) {
