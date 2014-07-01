@@ -38,7 +38,6 @@ config(['$routeProvider', '$locationProvider',function($routeProvider, $location
      $locationProvider.html5Mode(true);
   $routeProvider.
 	when("/gurgaon", {templateUrl: "partials/wpage", controller: "wPController"}).
-   // when("/", {templateUrl: "partials/wpage", controller: "wPController"}).
     when("/gurgaon/offers", {templateUrl: "partials/offers", controller: "offerController"}).
     when("/gurgaon/events", {templateUrl: "partials/events", controller: "eventController"}).
     when("/gurgaon/venues", {templateUrl: "partials/venues", controller: "venueController"});
