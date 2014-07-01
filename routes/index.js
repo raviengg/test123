@@ -26,24 +26,34 @@ module.exports = function(app,app_secure,hasher){
 
     }
 
+
+    app.get('/partials/:name', function (req, res) {
+        var name = req.params.name;
+        res.render('site/partials/' + name);
+    });
+
     app.get('/',function(req,res){
         if(req.secure){
-            res.redirect('/login');
+            res.redirect('/admin/login');
         }else{
-            res.render('site/index.jade');
+            res.redirect('/gurgaon');
         }
     });
 
+    app.get('/gurgaon', function (req, res) {
+
+        res.render('site/index.jade',{'city':'/gurgaon'});
+    });
 
     app.get('/admin-user', restrict,function(req, res) {
       res.render('admin-user', { title: 'user' });
     });
 
-    app.get('/logout', function(req, res){
+    app.get('/admin/logout', function(req, res){
       // destroy the user's session to log them out
       // will be re-created next request
       req.session.destroy(function(){
-        res.redirect('/login');
+        res.redirect('/admin/login');
       });
     });
 
@@ -72,11 +82,11 @@ module.exports = function(app,app_secure,hasher){
         });
     });
 
-    app.get('/login',redirect_secure,function(req, res) {
+    app.get('/admin/login',redirect_secure,function(req, res) {
         res.render('login', { title: 'Sign In' });
     });
 
-    app.post('/login', function(req, res){
+    app.post('/admin/login', function(req, res){
       authenticate(req.body.user, req.body.pass, function(err, user){
         if (user) {
           // Regenerate session when signing in
@@ -95,7 +105,7 @@ module.exports = function(app,app_secure,hasher){
         } else {
           req.session.error = 'Authentication failed, please check your '
             + ' username and password.' ;
-          res.redirect('/login');
+          res.redirect('/admin/login');
         }
       });
     });
@@ -135,7 +145,7 @@ module.exports = function(app,app_secure,hasher){
       } else {
           console.log('fail')
         req.session.error = 'Access denied!';
-        res.redirect('/login');
+        res.redirect('/admin/login');
       }
     }
 

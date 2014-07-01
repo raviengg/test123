@@ -3,9 +3,42 @@ module.exports = function(app,app_secure,uuid){
     /*
      * GET venuelist.
      */
+    app.get('/admin/welcome-page', function(req, res) {
+        var db = req.db;
+        console.log('normal landing page');
+        db.collection('venue').find({},{},{limit:4}).toArray(function (err, venue) {
+            db.collection('offers').find({},{},{limit:4}).toArray(function (err, offer) {
+                db.collection('events').find({},{},{limit:4}).toArray(function (err, event) {
+                    res.json({'venue':venue,'offer':offer,'event':event});
+                });
+            });
+        });
+    });
+
+    app.get('/admin/welcome-page/:city', function(req, res) {
+        var db = req.db;
+        console.log('city landing page page');
+        db.collection('venue').find({},{},{limit:4}).toArray(function (err, venue) {
+            db.collection('offers').find({},{},{limit:4}).toArray(function (err, offer) {
+                db.collection('events').find({},{},{limit:4}).toArray(function (err, event) {
+                    res.json({'venue':venue,'offer':offer,'event':event});
+                });
+            });
+        });
+    });
+
     app.get('/admin/venue/list', function(req, res) {
         var db = req.db;
         db.collection('venue').find().toArray(function (err, items) {
+            res.json(items);
+        });
+    });
+
+
+    app.get('/admin/venue/list/:city', function(req, res) {
+        var db = req.db;
+        var city = req.params.city;
+        db.collection('venue').find({'city':city}).toArray(function (err, items) {
             res.json(items);
         });
     });
