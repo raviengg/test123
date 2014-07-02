@@ -12,7 +12,7 @@ var express = require('express');
       key: fs.readFileSync('cert/privatekey.pem'),
       cert: fs.readFileSync('cert/certificate.pem')
     },
-    uuid = require('node-uuid'),
+    uuid = require('shortid'),
     pass =  require('./routes/pass'),
     hasher  = new pass();
     var db;
@@ -39,7 +39,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(__dirname + '/public'));
+console.log(express.static(path));
 app.use(session({ secret: 'shhhh, very secret' }));
 // Make our db accessible to our router
 app.use(function(req,res,next){

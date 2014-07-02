@@ -56,7 +56,7 @@ module.exports = function(app,app_secure,uuid){
     app.post('/admin/event/add', function(req, res) {
         var db = req.db;
         var nevent = req.body;
-        nevent._id =  uuid.v4().replace(/-/g, '');
+        nevent._id =  uuid.generate();
         db.collection('venue').findOne({"_id":nevent.venue._id},function(err,venue){
             if(err === null ){
                 nevent.city = venue.city;

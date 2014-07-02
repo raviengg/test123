@@ -56,7 +56,7 @@ app.put('/admin/offer/editoffer/:id', function(req, res) {
 app.post('/admin/offer/addoffer', function(req, res) {
     var db = req.db;
     var nOffer = req.body;
-    nOffer._id =  uuid.v4().replace(/-/g, '');
+    nOffer._id =  uuid.generate();
     db.collection('venue').findOne({"_id":nOffer.venue._id},function(err,venue){
         if(err === null ){
             nOffer.city = venue.city;
