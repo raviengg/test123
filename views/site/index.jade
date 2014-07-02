@@ -1,114 +1,24 @@
 doctype html
-html
+html(ng-app='Mojitoapp')
 
-title Mojito
-meta(charset='utf-8')
-meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
-meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
-meta(property='og:type', content='website')
-meta(property='og:title', content='Mozito')
-meta(property='og:site_name', content='Mozito')
-meta(name='description', content='Download the free Mozito app to get the best nightclub offers.')
-meta(property='og:description', content='Download the free Mozito app to get the best nightclub offers.')
-meta(name='viewport', content='width=device-width  initial-scale=1.0  maximum-scale=1.0  minimum-scale=1.0  user-scalable=no')
-meta(name='apple-mobile-web-app-capable', content='yes')
+    title Mojito
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    meta(property='og:type', content='website')
+    meta(property='og:title', content='Mozito')
+    meta(property='og:site_name', content='Mozito')
+    meta(name='description', content='Download the free Mozito app to get the best nightclub offers.')
+    meta(property='og:description', content='Download the free Mozito app to get the best nightclub offers.')
+    meta(name='viewport', content='width=device-width  initial-scale=1.0  maximum-scale=1.0  minimum-scale=1.0  user-scalable=no')
+    meta(name='apple-mobile-web-app-capable', content='yes')
 
 head
+        base(href=city)
         link(rel='stylesheet', href='/stylesheets/site-styles.css')
-        script(src='/javascripts/lib/angular/angular.js')
-        script(src='/javascripts/controller/controllers.js')
-
-    body.body-index.body-barcelona
-        div.section-header-bg
-            div.container
-                nav.navbar.navbar-inverse.mozitos-navi(role='navigation')
-                    div.navbar-header
-                        button.navbar-toggle(type='button' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1')
-                            span.sr-only Toggle navigation
-                            span.icon-bar.bg-offers
-                            span.icon-bar.bg-events
-                            span.icon-bar.bg-venues
-
-                        a.navbar-brand(href='/barcelon')
-                            img(src='/img/mozito-icon144x144.png')
-
-                        div.collapse.navbar-collapse#bs-example-navbar-collapse-1
-                            ul.nav.navbar-nav
-                                li.dropdown
-                                    a.dropdown-toggle(href='#'  data-toggle='dropdown') gurgaon
-                                        b.caret
-                            ul.dropdown-menu
-                                li
-                                    a(href='/gurgaon') Gurgaon
-                                li
-                                    a(href='/Delhi') Delhi
-                            ul.nav.navbar-nav.navbar-right
-                                li.section-link
-                                    a.color-offers(href='/gurgaon/offers') Offers
-                                li.section-link
-                                    a.color-events(href='/gurgaon/events') Events
-                                li.section-link
-                                    a.color-venues(href='/gurgaon/venues') Venues
-            div.section.section-header
-                div.container
-                div.section-header-app
-                    div.row
-                        div.col-xs-12.col-sm-8
-                            div.row
-                                div.col-xs-10.col-xs-offset-1.col-sm-11.col-sm-offset-1
-                                    img.img-responsive(src='/img/header/download_for_free.png')
-                            div.row
-                                div.col-xs-4.col-xs-offset-2.col-sm-4.col-sm-offset-4.col-md-3.col-md-offset-6
-                                    a (href='#')
-                                        img(src='/img/elements/appstore_logo.png')
-                                div.col-xs-4.col-sm-4.col-md-3
-                                    a(href='#')
-                                        img(src='/img/elements/googleplay_logo.png')
-
-        #offers.section.section-offers(ng-controller='offercntrl')
-            .container
-                .section-title.rounded
-                    h2 Offers in Mozito app
-
-                ul.mozitos-cards.row
-                    li.col-xs-12.col-sm-6.col-md-3
-                        .mozitos-card.mozitos-card-offer.rounded
-                            .mozitos-card-header
-                                .row
-                                    .col-xs-3.col-sm-3.col-md-4
-                                        .mozitos-card-icon.mozitos-card-icon-offer.rounded
-                                            img.img-responsive(src='https://yossa.fi/images/icons2/star.png')
-                                    .col-xs-9.col-sm-9.col-md-8.heading
-                                        h4 Cocteles -25%
-                            a(href='/venues/1661')
-                                .mozitos-card-image(style='background-image: url({{venue.name}});')
-                            .mozitos-card-footer
-                                .row
-                                    .col-xs-10
-                                        a.mozitos-card-footer-link(href='/venues/1661')
-                                            | Bobby´s Free
-                                    .col-xs-2
-                                        .venue-status.venue-status-closed
-        #venues.section.section-venues(ng-controller='venuecntrl')
-            .container
-                .section-title.rounded
-                    h2 Venues
-                ul.mozitos-cards.row
-                    li.col-xs-12.col-sm-6.col-md-3
-                        .mozitos-card.mozitos-card-venue.rounded
-                            .mozitos-card-header
-                                .row
-                                    .col-xs-3.col-sm-3.col-md-4
-                                        .mozitos-card-icon.mozitos-card-icon-venue.rounded
-                                            img.img-responsive(src='https://yossa.fi/images/icons2/star.png')
-                                    .col-xs-9.col-sm-9.col-md-8.heading
-                                        h4 GIPSY BAR
-                            a(href='/venues/100017')
-                                .mozitos-card-image(style='background-image: url(https://yossa.fi/media/images/ios/539095374478ddd12414264e-ios.jpg);')
-                            .mozitos-card-footer
-                                .row
-                                    .col-xs-10
-                                        a.mozitos-card-footer-link(href='/venues/100017')
-                                            | Calle Ample 54, gurgaon
-                                        .col-xs-2
-                                            .venue-status.venue-status-closed
+body.body-index.body-barcelona
+    ng-view
+script(src='/javascripts/lib/angular/angular.js')
+script(src='/javascripts/lib/angular/angular-route.js')
+script(src='/javascripts/controller/app.js')
+script(src='/javascripts/controller/controllers.js')
