@@ -6,8 +6,6 @@ module.exports = function(app,app_secure,uuid){
         });
     });
 
-
-
     /*
      * GET eventlist.
      */
@@ -36,6 +34,7 @@ module.exports = function(app,app_secure,uuid){
         db.collection('venue').findOne({"_id":nevent.venue._id},function(err,venue){
             if(err === null ){
                 nevent.city = venue.city;
+                nevent.loc.coordinates = venue.loc.coordinates;
                 db.collection('events').update({'_id':nevent._id},nevent,{'safe':true} ,function(err, result){
                     if(err === null){
                         db.collection('events').find().toArray(function (err, items) {
@@ -61,6 +60,7 @@ module.exports = function(app,app_secure,uuid){
         db.collection('venue').findOne({"_id":nevent.venue._id},function(err,venue){
             if(err === null ){
                 nevent.city = venue.city;
+                nevent.loc.coordinates = venue.loc.coordinates;
                 db.collection('events').insert(nevent, function(err, result){
                     if(err === null){
                         db.collection('events').find().toArray(function (err, items) {
