@@ -45,5 +45,6 @@ config(['$routeProvider', '$locationProvider',function($routeProvider, $location
     when("/gurgaon/offers", {templateUrl: "partials/offers", controller: "offersController"}).
     when("/gurgaon/events", {templateUrl: "partials/events", controller: "eventsController"}).
     when("/gurgaon/venues", {templateUrl: "partials/venues", controller: "venuesController"}).
-    when("/venues/:id", {templateUrl: "partials/venue", controller: "venueController"});
+    when("/venues/:id", {templateUrl: "partials/venue", controller: "venueController"}),
+    otherwise({redirectTo: '/gurgaon'});
 }]);
