@@ -79,7 +79,7 @@ module.exports = function(app,app_secure,uuid,hasher){
     /*
      * POST to adduser.
      */
-    app.post('/admin/user/adduser', function(req, res) {
+ /*   app.post('/admin/user/adduser', function(req, res) {
         var db = req.db;
         var nUser =  req.body;
         nUser._id =  uuid.v4().replace(/-/g, '');
@@ -89,7 +89,7 @@ module.exports = function(app,app_secure,uuid,hasher){
                 (err === null) ? { msg: '' } : { msg: err }
             );
         });
-    });
+    }); */
 
     /*
      * DELETE to deleteuser.
