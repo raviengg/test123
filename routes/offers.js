@@ -1,5 +1,5 @@
 module.exports = function(app,app_secure,uuid){
-app.get('/admin/offer/list', function(req, res) {
+app.get('/admin/offer', function(req, res) {
     var db = req.db;
     db.collection('offers').find().toArray(function (err, items) {
         res.json(items);
@@ -14,17 +14,6 @@ app.get('/admin/offer/list/:city', function(req, res) {
         res.json(offers);
     });
 });
-
-/*
- * GET offerlist.
- */
-app.get('/admin/offer/offerlist', function(req, res) {
-    var db = req.db;
-    db.collection('offers').find().toArray(function (err, items) {
-        res.json(items);
-    });
-});
-
 
 /*
  * PUT to editdoffer.

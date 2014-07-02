@@ -1,20 +1,11 @@
 module.exports = function(app,app_secure,uuid){
-    app.get('/admin/event/', function(req, res) {
+    app.get('/admin/event', function(req, res) {
         var db = req.db;
         db.collection('events').find().toArray(function (err, items) {
             res.json(items);
         });
     });
 
-    /*
-     * GET eventlist.
-     */
-    app.get('/admin/event/list', function(req, res) {
-        var db = req.db;
-        db.collection('events').find().toArray(function (err, items) {
-            res.json(items);
-        });
-    });
 
     app.get('/admin/event/list/:city', function(req, res) {
         var city = req.params.city;
@@ -59,8 +50,10 @@ module.exports = function(app,app_secure,uuid){
         nevent._id =  uuid.generate();
         db.collection('venue').findOne({"_id":nevent.venue._id},function(err,venue){
             if(err === null ){
+                console.log(venue.loc.coordinates+ ">>>>>>>>>" + venue.city)
                 nevent.city = venue.city;
-                nevent.loc.coordinates = venue.loc.coordinates;
+                nevent.loc = {'coordinates':venue.loc.coordinates}
+
                 db.collection('events').insert(nevent, function(err, result){
                     if(err === null){
                         db.collection('events').find().toArray(function (err, items) {
