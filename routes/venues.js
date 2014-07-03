@@ -50,7 +50,7 @@ module.exports = function(app,app_secure,uuid){
     app.get('/admin/venue/:id', function(req, res) {
         var db = req.db;
         var id = req.params.id;
-        db.collection('venue').findOne((function (err, items) {
+        db.collection('venue').findOne(function (err, items) {
             res.json(items);
         });
     });
