@@ -56,7 +56,7 @@ module.exports = function(app,app_secure,uuid){
         newVen.loc.coordinates=[longC,latC];
         newVen.loc.type = "Point";
         console.log(newVen);
-        newVen._id =  uuid.v4().replace(/-/g, '');
+        newVen._id =  uuid.generate();
         db.collection('venue').insert(newVen, function(err, result){
             if(err === null){
                 db.collection('venue').find().toArray(function (err, items) {

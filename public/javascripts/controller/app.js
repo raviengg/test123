@@ -39,6 +39,9 @@ config(['$routeProvider', '$locationProvider',function($routeProvider, $location
 	when("/gurgaon", {templateUrl: "partials/wpage", controller: "wPController"}).
     when("/gurgaon/offers", {templateUrl: "partials/offers", controller: "offerController"}).
     when("/gurgaon/events", {templateUrl: "partials/events", controller: "eventController"}).
-    when("/gurgaon/venues", {templateUrl: "partials/venues", controller: "venueController"});
+    when("/gurgaon/venues", {templateUrl: "partials/venues", controller: "venueController"}).
+    when("/gurgaon/offers/:id", {templateUrl: "partials/offer", controller: "offerController"}).
+    when("/gurgaon/events/:id", {templateUrl: "partials/event", controller: "eventController"}).
+    when("/gurgaon/venues/:id", {templateUrl: "partials/venue", controller: "venueController"});
 
 }]);

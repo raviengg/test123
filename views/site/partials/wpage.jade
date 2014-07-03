@@ -10,11 +10,11 @@
                         .row
                             .col-xs-3.col-sm-3.col-md-4
                                 .mozitos-card-icon.mozitos-card-icon-offer.rounded
-                                    img.img-responsive(src='https://yossa.fi/images/icons2/star.png')
+                                    img.img-responsive(src='img/star.png')
                             .col-xs-9.col-sm-9.col-md-8.heading
                                 h4 {{o.header}}
                     a(href='/')
-                        .mozitos-card-image(style='background-image: url({{venue.name}});')
+                        .mozitos-card-image(style='background-image: url({{o.venue.image}})')
                     .mozitos-card-footer
                         .row
                             .col-xs-10
@@ -30,16 +30,16 @@
 
         ul.mozitos-cards.row
             li.col-xs-12.col-sm-6.col-md-3(ng-repeat="e in events")
-                .mozitos-card.mozitos-card-offer.rounded
+                .mozitos-card.mozitos-card-event.rounded
                     .mozitos-card-header
                         .row
                             .col-xs-3.col-sm-3.col-md-4
-                                .mozitos-card-icon.mozitos-card-icon-offer.rounded
-                                    img.img-responsive(src='https://yossa.fi/images/icons2/star.png')
+                                .mozitos-card-icon.mozitos-card-icon-event.rounded
+                                    img.img-responsive(src='img/star.png')
                             .col-xs-9.col-sm-9.col-md-8.heading
                                 h4 {{e.title}}
                     a(href='/venues/1661')
-                        .mozitos-card-image(style='background-image: url({{venue.name}});')
+                        .mozitos-card-image(style='background-image: url({{v.photo1}});')
                     .mozitos-card-footer
                         .row
                             .col-xs-10
@@ -47,7 +47,7 @@
                                     | {{e.venue.name}}
                             .col-xs-2
                                 .venue-status.venue-status-closed
-        a.bg-offers.rounded.show-more(ng-href='{{city}}/events') More...
+        a.bg-events.rounded.show-more(ng-href='{{city}}/events') More...
 #venues.section.section-venues(ng-controller='wPController')
     .container
         .section-title.rounded
@@ -59,11 +59,11 @@
                         .row
                             .col-xs-3.col-sm-3.col-md-4
                                 .mozitos-card-icon.mozitos-card-icon-venue.rounded
-                                    img.img-responsive(src='https://yossa.fi/images/icons2/star.png')
+                                    img.img-responsive(src='img/star.png')
                             .col-xs-9.col-sm-9.col-md-8.heading
                                 h4 {{v.name}}
                     a(href='/venues/100017')
-                        .mozitos-card-image(style='background-image: url(https://yossa.fi/media/images/ios/539095374478ddd12414264e-ios.jpg);')
+                        .mozitos-card-image(style='background-image: url({{v.image}});')
                     .mozitos-card-footer
                         .row
                             .col-xs-10
