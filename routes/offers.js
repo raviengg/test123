@@ -24,7 +24,7 @@ app.put('/admin/offer/editoffer/:id', function(req, res) {
     db.collection('venue').findOne({"_id":nOffer.venue._id},function(err,venue){
         if(err === null ){
             nOffer.city = venue.city;
-            nOffer.loc.coordinates = venue.loc.coordinates;
+            nOffer.loc = {'coordinates':venue.loc.coordinates};
             db.collection('offers').update({'_id':nOffer._id},nOffer,{'safe':true} ,function(err, result){
                 if(err === null){
                     db.collection('offers').find().toArray(function (err, items) {
