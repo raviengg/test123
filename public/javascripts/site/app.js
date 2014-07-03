@@ -18,6 +18,12 @@ angular.module('Mojitoapp.services', [])
         url: '/admin/event/list/'+city
       });
     }
+
+    mojitoAPI.getEvent = function(id) {
+      return $http({
+        url: '/admin/event/'+id
+      });
+    }
     mojitoAPI.getVenues = function(city) {
       return $http({
         url: '/admin/venue/list/'+city
@@ -29,6 +35,11 @@ angular.module('Mojitoapp.services', [])
       });
     }
 
+    mojitoAPI.getVenueDetail = function(id) {
+      return $http({
+        url: '/admin/venue/detail'+id
+      });
+    }
     return mojitoAPI;
   });
 
@@ -46,5 +57,6 @@ config(['$routeProvider', '$locationProvider',function($routeProvider, $location
     when("/gurgaon/events", {templateUrl: "partials/events", controller: "eventsController"}).
     when("/gurgaon/venues", {templateUrl: "partials/venues", controller: "venuesController"}).
     when("/venues/:id", {templateUrl: "partials/venue", controller: "venueController"}).
+    when("/events/:id", {templateUrl: "partials/event", controller: "eventController"}).
     otherwise({redirectTo: '/gurgaon'});
 }]);

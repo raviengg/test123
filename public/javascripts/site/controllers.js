@@ -24,6 +24,12 @@ c.controller('eventsController',function($scope, $routeParams,mojitoAPIservice){
     });
 });
 
+c.controller('eventController',function($scope,mojitoAPIservice){
+    mojitoAPIservice.getEvent(getCPage('events')).success(function(data){
+            $scope.e = data;
+    });
+});
+
 c.controller('venuesController',function($scope, $routeParams,mojitoAPIservice){
     mojitoAPIservice.getVenues( getCPage('venues')).success(function(data){
             $scope.venues = data;
@@ -38,9 +44,13 @@ c.controller('venueController',function($scope, $routeParams,mojitoAPIservice){
     });
 });
 
+
 function getCPage(s){
     var loc = location.pathname;
     loc = loc.replace(s,"");
-    loc = loc.replace("\/","");
+    var find = '\/';
+    var re = new RegExp(find, 'g');
+    loc = loc.replace(re,"");
+    console.log(loc)
     return loc;
 }

@@ -1,0 +1,25 @@
+div(ng-controller="eventController")
+  article.detail(itemscope='itemscope', itemtype='http://schema.org/BarOrPub')
+    .container
+      .row
+        .col-xs-12
+          .rounded.block-header.detail-header
+            h1(itemprop='name') {{e.title}}
+      .row
+        .col-sm-6.col-md-4
+          img.img-responsive.img-rounded(src='{{e.photo1}}', alt='undefined')
+        .col-sm-6.col-md-8
+          .row
+            .col-sm-12.col-md-6
+              .block-header
+                h3 Event info
+              p
+                | {{e.desc}}
+            .col-sm-12.col-md-6
+              .block-header
+                h3 Contact details
+              address(itemprop='address', itemscope='itemscope', itemtype='http://schema.org/PostalAddress')
+                span(itemprop='streetAddress') e.address
+                | ,
+                span(itemprop='addressLocality') e.city
+              #map-canvas.map.rounded(data-name='undefined', data-lat='41.3860027', data-lng='2.1965291999999863')

@@ -6,6 +6,16 @@ module.exports = function(app,app_secure,uuid){
         });
     });
 
+  app.get('/admin/event/:id', function(req, res) {
+        var db = req.db;
+        var id = req.params.id;
+        db.collection('events').findOne({'_id':id},function (err, event) {
+            db.collection('venue').findOne({'_id':event.venue._id},function (err, venue) {
+                event.address = venue.address;
+                res.json(event);
+            });
+        });
+    });
 
     app.get('/admin/event/list/:city', function(req, res) {
         var city = req.params.city;
