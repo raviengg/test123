@@ -5042,7 +5042,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
-  background: #412b2a url("/img/bg/bw_background_5.jpg") 50% 50% no-repeat fixed;
+  background: #412b2a url("/img/w.jpg") 50% 50% no-repeat fixed;
   color: #fff;
   text-align: left;
   padding-top: 0px; }
@@ -5066,12 +5066,12 @@ body {
 
 .section-header-bg {
   padding-top: 0;
-  background: url(/img/bg-top/top_bar_background_helsinki_2_mini_bw.jpg) 50% 50% no-repeat;
+  background: url(/img/champagen.jpg) 50% 50% no-repeat;
   background-size: cover;
   margin-bottom: 3em; }
 
 .section-header-app {
-  background: url("/img/header/background.jpg") 50% 50% no-repeat;
+  background: url("/img/background.jpg") 50% 50% no-repeat;
   background-size: cover;
   border: 3px solid white; }
 
