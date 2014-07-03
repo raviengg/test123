@@ -13,12 +13,12 @@
                                     img.img-responsive(src='img/star.png')
                             .col-xs-9.col-sm-9.col-md-8.heading
                                 h4 {{o.header}}
-                    a(href='/')
+                    a(ng-href='/venues/{{o.venue._id}}')
                         .mozitos-card-image(style='background-image: url({{venue.name}});')
                     .mozitos-card-footer
                         .row
                             .col-xs-10
-                                a.mozitos-card-footer-link(href='/')
+                                a.mozitos-card-footer-link(ng-href='/venues/{{o.venue._id}}')
                                     | {{o.venue.name}}
                             .col-xs-2
                                 .venue-status.venue-status-closed
