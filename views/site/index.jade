@@ -12,13 +12,59 @@ html(ng-app='Mojitoapp')
     meta(property='og:description', content='Download the free Mozito app to get the best nightclub offers.')
     meta(name='viewport', content='width=device-width  initial-scale=1.0  maximum-scale=1.0  minimum-scale=1.0  user-scalable=no')
     meta(name='apple-mobile-web-app-capable', content='yes')
-
+    script(src='/javascripts/lib/jquery-1.11.1.min.js')
 head
         base(href=city)
         link(rel='stylesheet', href='/stylesheets/site-styles.css')
 body.body-index.body-barcelona
+    .section-header-bg
+        .container
+            nav.navbar.navbar-inverse.mozitos-navi(role='navigation')
+                .navbar-header
+                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                        span.sr-only Toggle navigation
+                        span.icon-bar.bg-offers
+                        span.icon-bar.bg-events
+                        span.icon-bar.bg-venues
+                    a.navbar-brand(href='/gurgaon')
+                        img(src='/img/elements/mozitoslogo.png', alt='mozitos')
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown')
+                                | gurgaon
+                                b.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href='/delhi') Delhi
+                                li."active"
+                                    a(href='/gurgaon') gurgaon
+                    ul.nav.navbar-nav.navbar-right
+                        li.section-link
+                            a.color-offers(href='/gurgaon/offers') Offers
+                        li.section-link
+                            a.color-events(href='/gurgaon/events') Events
+                        li.section-link
+                            a.color-venues(href='/gurgaon/venues') Venues
+    .section.section-header
+        .container
+            .section-header-app
+                .row
+                    .col-xs-12.col-sm-8
+                        .row
+                            .col-xs-10.col-xs-offset-1.col-sm-11.col-sm-offset-1
+                                img.img-responsive.heading(src='/img/header/download_for_free.png', alt='Download Mozito')
+                        .row
+                            .col-xs-4.col-xs-offset-2.col-sm-4.col-sm-offset-4.col-md-3.col-md-offset-6
+                                a(href='https://')
+                                    img(src='/img/elements/appstore_logo.png', alt='Download From App Store')
+                            .col-xs-4.col-sm-4.col-md-3
+                                a(href='')
+                                    img(src='/img/googleplay_logo.png', alt='Download From Google Play')
+                    .col-xs-6.col-xs-offset-3.col-sm-4.col-sm-offset-0
+                        img.img-responsive.hand(src='/img/header/hand_bar.png', alt='Mozito App')
     ng-view
 script(src='/javascripts/lib/angular/angular.js')
 script(src='/javascripts/lib/angular/angular-route.js')
-script(src='/javascripts/controller/app.js')
-script(src='/javascripts/controller/controllers.js')
+script(src='/javascripts/site/app.js')
+script(src='/javascripts/site/controllers.js')

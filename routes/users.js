@@ -48,7 +48,7 @@ module.exports = function(app,app_secure,uuid,hasher){
             var lat = parseFloat(user.lat);
             delete user['lat'];
             delete user['lon'];
-            user._id =  uuid.v4().replace(/-/g, '');
+            user._id =  uuid.generate();
             db.collection('userlist').insert(user, function(err, userObj){
                     //(err === null) ? result  : { msg: err }
                 if(err === null){

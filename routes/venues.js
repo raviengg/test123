@@ -27,13 +27,33 @@ module.exports = function(app,app_secure,uuid){
         });
     });
 
-    app.get('/admin/venue/list', function(req, res) {
+    app.get('/admin/venue', function(req, res) {
         var db = req.db;
         db.collection('venue').find().toArray(function (err, items) {
             res.json(items);
         });
     });
 
+
+    app.get('/admin/venue/detail/:id', function(req, res) {
+        var db = req.db;
+        var id = req.params.id;
+        db.collection('venue').findOne({'_id':id},function (err, venue) {
+            db.collection('offers').find({'venue._id':id}).toArray(function (err, offers) {
+                db.collection('events').find({'venue._id':id}).toArray(function (err, events) {
+                    res.json({v:venue,o:offers,e:events});
+                });
+            });
+        });
+    });
+
+    app.get('/admin/venue/:id', function(req, res) {
+        var db = req.db;
+        var id = req.params.id;
+        db.collection('venue').findOne(function (err, items) {
+            res.json(items);
+        });
+    });
 
     app.get('/admin/venue/list/:city', function(req, res) {
         var db = req.db;

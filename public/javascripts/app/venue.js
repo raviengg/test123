@@ -133,7 +133,7 @@ define(["../../javascripts/app/common"],
         venueListData:[],
         init:function(){
             var self = this;
-            $.getJSON( '/admin/venue/list', function( data ) {
+            $.getJSON( '/admin/venue', function( data ) {
                 self.venueListData = data;
                 self.populateTable();
             });
