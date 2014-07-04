@@ -19,7 +19,7 @@ div(ng-controller="eventController")
               .block-header
                 h3 Contact details
               address(itemprop='address', itemscope='itemscope', itemtype='http://schema.org/PostalAddress')
-                span(itemprop='streetAddress') e.address
-                | ,
-                span(itemprop='addressLocality') e.city
+                span(itemprop='streetAddress') {{e.address}}
+                br
+                span(itemprop='addressLocality') {{e.city}}
               #map-canvas.map.rounded(data-name='undefined', data-lat='41.3860027', data-lng='2.1965291999999863')

@@ -49,7 +49,7 @@ app.post('/admin/offer/addoffer', function(req, res) {
     db.collection('venue').findOne({"_id":nOffer.venue._id},function(err,venue){
         if(err === null ){
             nOffer.city = venue.city;
-            nOffer.loc.coordinates = venue.loc.coordinates;
+            nOffer.loc  = {'coordinates':venue.loc.coordinates};
             db.collection('offers').insert(nOffer, function(err, result){
                 if(err === null){
                     db.collection('offers').find().toArray(function (err, items) {
