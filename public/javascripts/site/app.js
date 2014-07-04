@@ -35,11 +35,7 @@ angular.module('Mojitoapp.services', [])
       });
     }
 
-    mojitoAPI.getVenueDetail = function(id) {
-      return $http({
-        url: '/admin/venue/detail'+id
-      });
-    }
+
     return mojitoAPI;
   });
 

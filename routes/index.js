@@ -39,25 +39,13 @@ module.exports = function(app,app_secure,hasher){
             res.redirect('/gurgaon');
         }
     });
-    var commonPaths = ['/gurgaon','/gurgaon/*','/venues/:id'];
+    var commonPaths = ['/gurgaon','/gurgaon/*','/venues/:id','/events/:id','/venues'];
 
 
     app.get(commonPaths, function (req, res) {
         res.render('site/index.jade',{'city':'/gurgaon'});
     });
-  /*
-    app.get('/gurgaon', function (req, res) {
-        res.render('site/index.jade',{'city':'/gurgaon'});
-    });
 
-    app.get('/gurgaon/*', function (req, res) {
-        res.render('site/index.jade',{'city':'/gurgaon'});
-    });
-
-    app.get('/venues/:id', function (req, res) {
-        res.render('site/index.jade',{'city':'/gurgaon'});
-    });
-*/
     app.get('/admin-user', restrict,function(req, res) {
       res.render('admin-user', { title: 'user' });
     });

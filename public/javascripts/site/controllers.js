@@ -7,7 +7,7 @@ c.controller('wPController', function($scope,mojitoAPIservice){
             $scope.events = data.event;
             var loc = location.pathname;
             loc = loc.replace("\/","");
-            console.log(loc)
+            //console.log(loc)
             $scope.city = loc;
     });
 });
@@ -27,6 +27,7 @@ c.controller('eventsController',function($scope, $routeParams,mojitoAPIservice){
 c.controller('eventController',function($scope,mojitoAPIservice){
     mojitoAPIservice.getEvent(getCPage('events')).success(function(data){
             $scope.e = data;
+            console.log($scope)
     });
 });
 
@@ -36,7 +37,7 @@ c.controller('venuesController',function($scope, $routeParams,mojitoAPIservice){
     });
 });
 
-c.controller('venueController',function($scope, $routeParams,mojitoAPIservice){
+c.controller('venueController',function($scope,mojitoAPIservice){
     mojitoAPIservice.getVenueDetail( getCPage('venues')).success(function(data){
             $scope.v = data.v;
             $scope.o = data.o;
@@ -51,6 +52,6 @@ function getCPage(s){
     var find = '\/';
     var re = new RegExp(find, 'g');
     loc = loc.replace(re,"");
-    console.log(loc)
+    //console.log(loc)
     return loc;
 }
