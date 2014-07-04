@@ -14,7 +14,7 @@
                             .col-xs-9.col-sm-9.col-md-8.heading
                                 h4 {{o.header}}
                     a(ng-href='/venues/{{o.venue._id}}')
-                        .mozitos-card-image(style='background-image: url({{o.venue.image}})')
+                        .mozitos-card-image(style='background-image: url({{o.photoString}})')
                     .mozitos-card-footer
                         .row
                             .col-xs-10
@@ -38,8 +38,8 @@
                                     img.img-responsive(src='img/star.png')
                             .col-xs-9.col-sm-9.col-md-8.heading
                                 h4 {{e.title}}
-                    a(ng-href='/venues/{{e._id}}')
-                        .mozitos-card-image(style='background-image: url({{v.photo1}});')
+                    a(ng-href='/events/{{e._id}}')
+                        .mozitos-card-image(style='background-image: url({{e.photo1}})')
                     .mozitos-card-footer
                         .row
                             .col-xs-10
