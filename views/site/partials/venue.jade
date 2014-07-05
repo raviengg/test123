@@ -4,7 +4,7 @@ div(ng-controller = 'venueController')
           .row
             .col-xs-12
               .rounded.block-header.detail-header
-                h1(itemprop='name') {{venue.name}}
+                h1(itemprop='name') {{v.name}}
           .row
             .col-sm-6.col-md-4
               img.img-responsive.img-rounded(src='{{v.image}}', alt='Gurgaon')
@@ -26,7 +26,7 @@ div(ng-controller = 'venueController')
         .block-header
           h2 Offers in venue
     ul.mozitos-cards.row
-      li.col-xs-12.col-sm-6.col-md-3
+      li.col-xs-12.col-sm-6.col-md-3(ng-repeat = "O in o")
         .mozitos-card.mozitos-card-offer.rounded
           .mozitos-card-header
             .row
@@ -34,14 +34,14 @@ div(ng-controller = 'venueController')
                 .mozitos-card-icon.mozitos-card-icon-offer.rounded
                   img.img-responsive(src='img/star.png')
               .col-xs-9.col-sm-9.col-md-8.heading
-                h4 Lippu 0€ (+1 avec)
-          a(href='/venues/108')
-            .mozitos-card-image(style='background-image: url({{v.image}}')
+                h4 {{O.header}}
+          a
+            .mozitos-card-image(style='background-image: url({{O.photoString}}')
           .mozitos-card-footer
             .row
               .col-xs-10
                 .mozitos-card-footer-link
-                  | Kokomo Tikibar & Room, Helsinki
+                  | {{O.venue.name}}
               .col-xs-2
                 .venue-status.venue-status-closed
   .container(ng-if="e.length>0")
@@ -50,7 +50,7 @@ div(ng-controller = 'venueController')
         .block-header
           h2 Events in venue
     ul.mozitos-cards.row
-      li.col-xs-12.col-sm-6.col-md-3
+      li.col-xs-12.col-sm-6.col-md-3(ng-repeat = "E in  e")
         .mozitos-card.mozitos-card-event.rounded
           .mozitos-card-header
             .row
@@ -58,13 +58,13 @@ div(ng-controller = 'venueController')
                 .mozitos-card-icon.mozitos-card-icon-event.rounded
                   img.img-responsive(src='img/star.png')
               .col-xs-9.col-sm-9.col-md-8.heading
-                h4 Lippu 0€ (+1 avec)
-          div
-            .mozitos-card-image(style='background-image: url({{v.image}})')
+                h4 {{E.title}}
+          a(ng-href='/venues/{{E._id}}')
+            .mozitos-card-image(style='background-image: url({{E.photo1}})')
           .mozitos-card-footer
             .row
               .col-xs-10
                 .mozitos-card-footer-link
-                  | Kokomo Tikibar & Room, Helsinki
+                  | {{E.venue.name}}
               .col-xs-2
                 .venue-status.venue-status-closed
