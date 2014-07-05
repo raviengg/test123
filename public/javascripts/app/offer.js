@@ -28,7 +28,7 @@ define(["../../javascripts/app/common"],
                 if(type ==='info'){
                     nOffer._id =$(prepend+'Header').data('id') ;
                 }
-                console.log(nOffer);
+                console.log("Summved::"+nOffer);
 
 
                 if(nOffer.header ==='' || nOffer.photoString ==='' || nOffer.type ==='0'
@@ -86,6 +86,7 @@ define(["../../javascripts/app/common"],
                 event.preventDefault();
 
                 var nOffer = event.data.self.getOffer('');
+				console.log("Summved's Json String ::"+JSON.stringify(nOffer));
                 if(typeof(nOffer)=='string'){
                     if(nOffer == 'empty')
 						return alert('Please fill in all details');

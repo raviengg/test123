@@ -4,7 +4,9 @@ html
         title= title
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/stylesheets/jquery-ui-1.10.4.custom.min.css')
+        //link(rel='stylesheet', href='/stylesheets/jquery.datetimepicker.css')
         script(data-main='/javascripts/app' src='/javascripts/lib/require.js')
+        //script(data-main='/javascripts/app' src='/javascripts/lib/jquery.datetimepicker.js')
     body
     a(href='/') Back
 
@@ -53,6 +55,20 @@ html
                 br
                 input#inputUserLocation(type='text', placeholder='Location')
                 input#inputUserGender(type='text', placeholder='gender')
+                br
+                select#Is Read-Only
+                    option(value="N") No
+                    option(value="Y") Yes
+                br
+                input#inputAddedBy(type='text', placeholder='Added By')
+                br
+                select#Active Flag
+                    option(value="Y") Yes
+                    option(value="N") No
+                br    
+                input#inputStartDate.date(type='text',placeholder='Start Date')
+                //input#inputStarttime.time(type='text',placeholder='Start Date')
+                //input#inputStartDate.datetimepicker().datetimepicker({startDate: new Date(),step:1});
                 br
                 button#btnAddUser Add User
         // /ADD USER
