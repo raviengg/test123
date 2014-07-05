@@ -8,11 +8,11 @@ requirejs.config({
     paths: {
         app: '../app',
         "jquery": "../../javascripts/lib/jquery-1.11.1.min",
-        "jquery-ui":"../../javascripts/lib/jquery-ui-1.10.4.custom.min"
-
+        "jquery-ui":"../../javascripts/lib/jquery-ui-1.10.4.custom.min",
+        "date-time":"../../javascripts/lib/datetimepicker/jquery.datetimepicker"
     }
 });
 
 // Start loading the main app file. Put all of
 // your application logic in there.
-requirejs(['jquery','jquery-ui','../../javascripts/app/main'],function(){});
+requirejs(['jquery','jquery-ui','../../javascripts/app/main',"date-time"],function(){});
