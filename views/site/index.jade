@@ -12,7 +12,6 @@ html(ng-app='Mojitoapp' manifest='site.appcache')
     meta(property='og:description', content='Download the free Mozito app to get the best nightclub offers.')
     meta(name='viewport', content='width=device-width  initial-scale=1.0  maximum-scale=1.0  minimum-scale=1.0  user-scalable=no')
     meta(name='apple-mobile-web-app-capable', content='yes')
-    script(src='/javascripts/lib/jquery-1.11.1.min.js')
 head
         base(href=city)
         link(rel='stylesheet', href='/stylesheets/site-styles.css')
@@ -66,5 +65,11 @@ body.body-index.body-barcelona
     ng-view
 script(src='/javascripts/lib/angular/angular.js')
 script(src='/javascripts/lib/angular/angular-route.js')
+script(src='/javascripts/lib/jquery-1.11.1.min.js')
+script(src='/javascripts/site/lib/collapse.js')
+script(src='/javascripts/site/lib/dropdown.js')
+script(src='javascripts/site/lib/transition.js')
 script(src='/javascripts/site/app.js')
 script(src='/javascripts/site/controllers.js')
+
+script(src='/javascripts/site/helpers.js')
