@@ -15,6 +15,7 @@ html(ng-app='Mojitoapp' manifest='site.appcache')
 head
         base(href=city)
         link(rel='stylesheet', href='/stylesheets/site-styles.css')
+        script(src='http://maps.googleapis.com/maps/api/js')
 body.body-index.body-barcelona
     .section-header-bg
         .container
@@ -68,5 +69,4 @@ script(src='/javascripts/site/lib/dropdown.js')
 script(src='javascripts/site/lib/transition.js')
 script(src='/javascripts/site/app.js')
 script(src='/javascripts/site/controllers.js')
-
 script(src='/javascripts/site/helpers.js')

@@ -20,6 +20,11 @@ div(ng-controller = 'venueController')
                 .col-sm-12.col-md-6
                   .block-header
                     h3 Contact details
+                  address(itemprop='address', itemscope='itemscope', itemtype='http://schema.org/PostalAddress')
+                    span(itemprop='streetAddress') {{v.address}}
+                    | ,
+                    span(itemprop='addressLocality') {{v.city}}
+                  #map-canvas.map.rounded(data-name='KIILA Food & Bar', data-lat='60.1682072', data-lng='24.94020009999997')
   .container(ng-if="o.length>0")
     .row
       .col-xs-12
