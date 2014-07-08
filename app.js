@@ -9,8 +9,8 @@ var express = require('express');
     mongo = require('mongoskin');
     app = express(),
     options = {
-      key: fs.readFileSync('cert/privatekey.pem'),
-      cert: fs.readFileSync('cert/certificate.pem')
+      key: fs.readFileSync('./cert/privatekey.pem'),
+      cert: fs.readFileSync('./cert/certificate.pem')
     },
     uuid = require('shortid'),
     pass =  require('./routes/pass'),
