@@ -7,7 +7,7 @@ div(ng-controller = 'venueController')
                 h1(itemprop='name') {{v.name}}
           .row
             .col-sm-6.col-md-4
-              img.img-responsive.img-rounded(src='{{v.image}}', alt='Gurgaon')
+              img.img-responsive.img-rounded(src='{{v.image}}_big_400.jpg', alt='Gurgaon')
             .col-sm-6.col-md-8
               .row
                 .col-sm-12.col-md-6
@@ -41,7 +41,7 @@ div(ng-controller = 'venueController')
               .col-xs-9.col-sm-9.col-md-8.heading
                 h4 {{O.header}}
           a
-            .mozitos-card-image(style='background-image: url({{O.photoString}}')
+            .mozitos-card-image(style='background-image: url({{O.photoString}}_big_400.jpg')
           .mozitos-card-footer
             .row
               .col-xs-10
@@ -65,7 +65,7 @@ div(ng-controller = 'venueController')
               .col-xs-9.col-sm-9.col-md-8.heading
                 h4 {{E.title}}
           a(ng-href='/venues/{{E._id}}')
-            .mozitos-card-image(style='background-image: url({{E.photo1}})')
+            .mozitos-card-image(style='background-image: url({{E.photo1}}_big_400.jpg)')
           .mozitos-card-footer
             .row
               .col-xs-10
