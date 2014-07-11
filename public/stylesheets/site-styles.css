@@ -5065,7 +5065,7 @@ body {
     margin-bottom: -3px; }
 
 .section-header-bg {
-  padding-top: 0;
+  padding-top: 20px;
   background: url(/img/champagen.jpg) 50% 50% no-repeat;
   background-size: cover;
   margin-bottom: 3em; }
