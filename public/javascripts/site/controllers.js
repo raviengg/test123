@@ -47,12 +47,13 @@ c.controller('venueController',function($scope,mojitoAPIservice){
 
               $('#map-canvas').each(function () {
 
-                var latlng = new google.maps.LatLng(data.v.loc.coordinates[1], data.v.loc.coordinates[1]);
+                var latlng = new google.maps.LatLng(data.v.loc.coordinates[1], data.v.loc.coordinates[0]);
                 var mapOptions = {
                   zoom: 14,
                   center: latlng,
                   disableDefaultUI: true
                 };
+
                 var map = new google.maps.Map(this, mapOptions);
                 var marker = new google.maps.Marker({
                   position: latlng,
