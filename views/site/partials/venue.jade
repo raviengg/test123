@@ -24,7 +24,9 @@ div(ng-controller = 'venueController')
                     span(itemprop='streetAddress') {{v.address}}
                     | ,
                     span(itemprop='addressLocality') {{v.city}}
-                  #map-canvas.map.rounded(data-name='KIILA Food & Bar', data-lat='60.1682072', data-lng='24.94020009999997')
+                    br
+                    |{{v.phone}}
+                  #map-canvas.map.rounded
   .container(ng-if="o.length>0")
     .row
       .col-xs-12
@@ -41,7 +43,7 @@ div(ng-controller = 'venueController')
               .col-xs-9.col-sm-9.col-md-8.heading
                 h4 {{O.header}}
           a
-            .mozitos-card-image(style='background-image: url({{O.photoString}}_big_400.jpg')
+            .mozitos-card-image(style='background-image: url({{O.photoString}}_big_400.jpg)')
           .mozitos-card-footer
             .row
               .col-xs-10
