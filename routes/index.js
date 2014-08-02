@@ -1,5 +1,5 @@
 module.exports = function(app,app_secure,hasher){
- hasher.hash('apmozprod1ps', function(err, salt, hash){
+ hasher.hash('apmoz2prod1ps', function(err, salt, hash){
       if (err) throw err;
       // store the salt & hash in the "db"
       users.admin.salt = salt;
