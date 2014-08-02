@@ -24,7 +24,7 @@ process.argv.forEach(function (val, index, array) {
         db = mongo.db("mongodb://localhost:27017/partyy", {native_parser:true});
         app.set('server','local');
     }else{
-        db = mongo.db("mongodb://ravinder:tst1apps198@ds053459.mongolab.com:53459/newtestdb",{safe: true, auto_reconnect: true});
+        db = mongo.db("mongodb://ravinder:tst1apps198@ds053439.mongolab.com:53439/newtestdb",{safe: true, auto_reconnect: true});
         app.set('server','heroku');
     }
 });
